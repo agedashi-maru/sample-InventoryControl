@@ -1,1 +1,1 @@
-# sample-InventoryControl
+# sam-InventoryControl

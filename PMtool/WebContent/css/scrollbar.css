@@ -1,0 +1,136 @@
+@CHARSET "UTF-8";
+
+/*スクロール用*/
+thead.scrollHead, tbody.scrollBody {
+	display: block;
+	font-size: 19px;
+}
+
+table.scroll {
+	border-collapse: collapse;
+	width: 600px;
+}
+
+tbody.scrollBody {
+	background-color: white;
+	overflow-y: scroll;
+	height: 250px;
+
+	border: 1px solid #a9a9a9;
+}
+
+table.scroll tbody.scrollBody td {
+	border: 1px solid #a9a9a9;
+}
+
+/*幅調整*/
+.scroll th {
+	table-layout: fixed;
+	padding-right: 12px;
+}
+
+.scroll td {
+  table-layout: fixed;
+}
+
+
+/*
+th.typeA {
+	text-align: center;
+	width: 70px;
+}
+
+th.typeB {
+	text-align: center;
+	width: 275px;
+}
+
+th.typeC {
+	text-align: center;
+	width: 100px;
+}
+
+th.typeD {
+	text-align: center;
+	width: 70px;
+}
+
+th.typeE {
+	text-align: center;
+	width: 75px;
+}
+
+th.type1 {
+	text-align: center;
+	width: 75px;
+}
+
+th.type2 {
+	text-align: center;
+	width: 225px;
+}
+
+th.type3 {
+	text-align: center;
+	width: 125px;
+}
+
+th.type4 {
+	text-align: center;
+	width: 95px;
+}
+
+th.type5 {
+	text-align: center;
+	width: 65px;
+}
+*/
+.typeA {
+	text-align: center;
+	width: 70px;
+}
+
+.typeB {
+	text-align: center;
+	width: 280px;
+}
+
+.typeC {
+	text-align: center;
+	width: 105px;
+}
+
+.typeD {
+	text-align: center;
+	width: 75px;
+}
+
+.typeE {
+	text-align: center;
+	width: 80px;
+}
+
+.type1 {
+	text-align: center;
+	width: 80px;
+}
+
+.type2 {
+	text-align: center;
+	width: 230px;
+}
+
+.type3 {
+	text-align: center;
+	width: 130px;
+}
+
+.type4 {
+	text-align: center;
+	width: 100px;
+}
+
+.type5 {
+	text-align: center;
+	width: 70px;
+}

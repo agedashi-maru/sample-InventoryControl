@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+div.conf{
+	margin-top: 80px;
+}
+
+h1 {
+	font-size: 60px;
+	color: #e44d93;
+}
+
+table {
+	margin-top: 40px;
+	border-collapse: collapse;
+	font-size: 27px;
+	line-height: 250%;
+}
+
+th {
+	border: 1px solid black;
+	font-weight: bold;
+	padding: 2px 35px;
+	background-color:#6cbb5a;
+	color: white;
+}
+
+td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	font-family: sans-serif;
+	padding: 2px 35px;
+}
+
+p.con {
+	margin: 10px, 10px;
+	font-weight: 30px;
+	font-size: 25px;
+}

@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+div.left {
+  margin-top: 35px;
+  font-size: 17px;
+  float: left;
+  width: 48%;
+}
+
+div.right {
+  margin-top: 35px;
+  font-size: 17px;
+  float: right;
+  width: 48%;
+  padding-right: 10px;
+}

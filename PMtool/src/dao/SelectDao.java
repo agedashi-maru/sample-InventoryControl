@@ -10,17 +10,21 @@ import java.util.List;
 import model.ProductJB;
 
 public class SelectDao {
-//フィールド変数
-	private Connection con = null; // コネクションオブジェクト
-	private Statement stmt = null; // ステートメントオブジェクト
+
+	// コネクションオブジェクト
+	private Connection con = null;
+	// ステートメントオブジェクト
+	private Statement stmt = null;
 
 	// Statementの取得
 	private void createStmt() throws DaoExce {
+		// 既にStatement取得済みならばメソッドを抜ける
 		if (this.stmt != null) {
 			return;
-		} // 既にStatement取得済みならばメソッドを抜ける
+		}
 		try {
-			stmt = con.createStatement(); // ステートメント取得
+			// ステートメント取得
+			stmt = con.createStatement();
 			// SQLに関する例外処理
 		} catch (SQLException e) {
 			throw new DaoExce("[createStmt]異常", e);
@@ -106,7 +110,8 @@ public class SelectDao {
 		}
 		return jb;
 	}
-//クローズ処理
+
+	//クローズ処理
 	private void close() throws DaoExce {
 		if (this.stmt != null) {
 			try {

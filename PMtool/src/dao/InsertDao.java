@@ -8,16 +8,19 @@ import java.sql.Statement;
 import model.ProductJB;
 
 public class InsertDao {
-//フィールド変数
-	private Connection con = null; // コネクションオブジェクト
-	private Statement stmt = null; // ステートメントオブジェクト
+
+	// コネクションオブジェクト
+	private Connection con = null;
+	// ステートメントオブジェクト
+	private Statement stmt = null;
 
 	public int insertProduct(ProductJB productJB) throws DaoExce {
 
 		int count = 0;
 
 		try {
-			con = ConectDB.getConnection(); // Connectionの取得
+			// Connectionの取得
+			con = ConectDB.getConnection();
 			PreparedStatement prestmt = con.prepareStatement("insert into m_product (items,kinds,groups,stocks) values(?,?,?,?)");
 			prestmt.setString(1,productJB.getItem());
 			prestmt.setString(2,productJB.getKind());
@@ -35,7 +38,7 @@ public class InsertDao {
 		return count;
 	}
 
-//クローズ処理
+	//クローズ処理
 	private void close() throws DaoExce {
 		if (this.stmt != null) {
 			try {

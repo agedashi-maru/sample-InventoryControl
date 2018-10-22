@@ -29,9 +29,9 @@ public class InsertDao {
 			count = prestmt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DaoExce("[insertProduct]異常", e);
+			throw new DaoExce("[InsertDao : insertProduct]異常", e);
 		} catch (Exception e) {
-			throw new DaoExce("[insertProduct]異常", e);
+			throw new DaoExce("[InsertDao : insertProduct]異常", e);
 		}finally{
 			close();
 		}
@@ -44,7 +44,7 @@ public class InsertDao {
 			try {
 				this.stmt.close();
 			} catch (SQLException e) {
-				throw new DaoExce("[close]異常", e);
+				throw new DaoExce("[InsertDao : close]異常", e);
 			}
 		}
 		this.stmt = null;
@@ -52,7 +52,7 @@ public class InsertDao {
 			try {
 				this.con.close();
 			} catch (SQLException e) {
-				throw new DaoExce("[close]異常", e);
+				throw new DaoExce("[InsertDao : close]異常", e);
 			}
 		}
 		this.con = null;

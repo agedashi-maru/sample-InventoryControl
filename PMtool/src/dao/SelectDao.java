@@ -27,7 +27,7 @@ public class SelectDao {
 			stmt = con.createStatement();
 			// SQLに関する例外処理
 		} catch (SQLException e) {
-			throw new DaoExce("[createStmt]異常", e);
+			throw new DaoExce("[SelectDao : createStmt]異常", e);
 		}
 	}
 
@@ -51,9 +51,9 @@ public class SelectDao {
 				empList.add(jb);
 			}
 		} catch (SQLException e) {
-			throw new DaoExce("[findProducts]異常", e);
+			throw new DaoExce("[SelectDao : findProducts]異常", e);
 		} catch (Exception e) {
-			throw new DaoExce("[findProducts]異常", e);
+			throw new DaoExce("[SelectDao : findProducts]異常", e);
 		} finally {
 			close(); // クローズ処理
 		}
@@ -75,9 +75,9 @@ public class SelectDao {
 				empList.add(jb);
 			}
 		} catch (SQLException e) {
-			throw new DaoExce("[findId]異常", e);
+			throw new DaoExce("[SelectDao : findId]異常", e);
 		} catch (Exception e) {
-			throw new DaoExce("[findId]異常", e);
+			throw new DaoExce("[SelectDao : findId]異常", e);
 		} finally {
 			close(); // クローズ処理
 		}
@@ -102,9 +102,9 @@ public class SelectDao {
 				jb = new ProductJB(id, item, kind, group,stock);
 			}
 		} catch (SQLException e) {
-			throw new DaoExce("[selectById]異常", e);
+			throw new DaoExce("[SelectDao : selectById]異常", e);
 		} catch (Exception e) {
-			throw new DaoExce("[selectById]異常", e);
+			throw new DaoExce("[SelectDao : selectById]異常", e);
 		} finally {
 			close(); // クローズ処理
 		}
@@ -117,7 +117,7 @@ public class SelectDao {
 			try {
 				this.stmt.close();
 			} catch (SQLException e) {
-				throw new DaoExce("[close]異常", e);
+				throw new DaoExce("[SelectDao : close]異常", e);
 			}
 		}
 		this.stmt = null;
@@ -125,7 +125,7 @@ public class SelectDao {
 			try {
 				this.con.close();
 			} catch (SQLException e) {
-				throw new DaoExce("[close]異常", e);
+				throw new DaoExce("[SelectDao : close]異常", e);
 			}
 		}
 		this.con = null;

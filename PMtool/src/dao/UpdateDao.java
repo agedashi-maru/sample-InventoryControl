@@ -26,7 +26,7 @@ public class UpdateDao {
 			stmt = con.createStatement();
 			// SQLに関する例外処理
 		} catch (SQLException e) {
-			throw new DaoExce("[createStmt]異常", e);
+			throw new DaoExce("[UpdateDao : createStmt]異常", e);
 		}
 	}
 
@@ -39,9 +39,9 @@ public class UpdateDao {
 			createStmt();
 			count = stmt.executeUpdate(sql);
 		} catch (SQLException e) {
-			throw new DaoExce("[updateProduct]異常", e);
+			throw new DaoExce("[UpdateDao : updateProduct]異常", e);
 		} catch (Exception e) {
-			throw new DaoExce("[updateProduct]異常", e);
+			throw new DaoExce("[UpdateDao : updateProduct]異常", e);
 		} finally {
 			close();
 		}
@@ -75,9 +75,9 @@ public class UpdateDao {
 				e.printStackTrace();
 			}
 		} catch (SQLException e) {
-			throw new DaoExce("[updateStockInOut]異常", e);
+			throw new DaoExce("[UpdateDao : updateStockInOut]異常", e);
 		} catch (Exception e) {
-			throw new DaoExce("[updateStockInOut]異常", e);
+			throw new DaoExce("[UpdateDao : updateStockInOut]異常", e);
 		}
 
 
@@ -90,7 +90,7 @@ public class UpdateDao {
 			try {
 				this.stmt.close();
 			} catch (SQLException e) {
-				throw new DaoExce("[close]異常", e);
+				throw new DaoExce("[UpdateDao : close]異常", e);
 			}
 		}
 		this.stmt = null;
@@ -98,7 +98,7 @@ public class UpdateDao {
 			try {
 				this.con.close();
 			} catch (SQLException e) {
-				throw new DaoExce("[close]異常", e);
+				throw new DaoExce("[UpdateDao : close]異常", e);
 			}
 		}
 		this.con = null;

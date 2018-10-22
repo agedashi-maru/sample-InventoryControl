@@ -27,7 +27,7 @@ public class HistoryDao {
 			stmt = con.createStatement();
 			// SQLに関する例外処理
 		} catch (SQLException e) {
-			throw new DaoExce("[createStmt]異常", e);
+			throw new DaoExce("[HistoryDao : createStmt]異常", e);
 		}
 	}
 
@@ -36,8 +36,10 @@ public class HistoryDao {
 		History his = null;
 		// 事前準備
 		try {
-			con = ConectDB.getConnection(); // Connectionの取得
-			createStmt(); // Statementの取得
+			// Connectionの取得
+			con = ConectDB.getConnection();
+			// Statementの取得
+			createStmt();
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
@@ -50,21 +52,22 @@ public class HistoryDao {
 				hisList.add(his);
 			}
 		} catch (SQLException e) {
-			throw new DaoExce("[getHistory]異常", e);
+			throw new DaoExce("[HistoryDao : getHistory]異常", e);
 		} catch (Exception e) {
-			throw new DaoExce("[getHistory]異常", e);
+			throw new DaoExce("[HistoryDao : getHistory]異常", e);
 		} finally {
-			close(); // クローズ処理
+			close();
 		}
 		return hisList;
 	}
 
+	// クローズ処理
 	private void close() throws DaoExce {
 		if (this.stmt != null) {
 			try {
 				this.stmt.close();
 			} catch (SQLException e) {
-				throw new DaoExce("[close]異常", e);
+				throw new DaoExce("[HistoryDao : close]異常", e);
 			}
 		}
 		this.stmt = null;
@@ -72,7 +75,7 @@ public class HistoryDao {
 			try {
 				this.con.close();
 			} catch (SQLException e) {
-				throw new DaoExce("[close]異常", e);
+				throw new DaoExce("[HistoryDao : close]異常", e);
 			}
 		}
 		this.con = null;

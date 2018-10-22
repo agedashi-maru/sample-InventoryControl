@@ -20,6 +20,7 @@ import model.ProductJB;
  */
 @WebServlet("/log/InsertMain")
 public class InsertMain extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -33,6 +34,7 @@ public class InsertMain extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		List<ProductJB> empList = new ArrayList<ProductJB>();
 		empList = (List<ProductJB>)session.getAttribute("insertjbList");

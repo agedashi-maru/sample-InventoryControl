@@ -20,6 +20,7 @@ import model.ProductJB;
  */
 @WebServlet("/log/DeleteMain")
 public class DeleteMain extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 
     /**

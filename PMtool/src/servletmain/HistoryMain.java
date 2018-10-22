@@ -20,7 +20,10 @@ import model.HistoryLogic;
  */
 @WebServlet("/log/HistoryMain")
 public class HistoryMain extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+
+	final private String noHistory = "※照会方法を選択してください";
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,24 +36,29 @@ public class HistoryMain extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		List<History> hisList = new ArrayList<History>();
 		HistoryLogic historyLogic = new HistoryLogic();
 		String history = request.getParameter("history");
-		if (history==null) {
-			String noHistory = "※照会方法を選択してください";
-			request.setAttribute("noHistory", noHistory);
-		}else{
 
+		if (history==null) {
+			request.setAttribute("noHistory", noHistory);
+
+		}else{
 			if (history.equals("his1")) {
 			hisList = historyLogic.inLogic();
-		}else if(history.equals("his2")){
-			hisList = historyLogic.outLogic();
-		}else if (history.equals("his3")) {
-			hisList = historyLogic.inOutLogic();
-		}
-		session.setAttribute("hisList", hisList);
+
+			}else if(history.equals("his2")){
+				hisList = historyLogic.outLogic();
+
+			}else if (history.equals("his3")) {
+				hisList = historyLogic.inOutLogic();
+
+			}
+			session.setAttribute("hisList", hisList);
+
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menujsp/selectMenu.jsp");

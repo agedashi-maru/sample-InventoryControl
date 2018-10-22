@@ -21,6 +21,7 @@ import model.UpdateLogic;
  */
 @WebServlet("/log/UpdateMain")
 public class UpdateMain extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -35,18 +36,21 @@ public class UpdateMain extends HttpServlet {
 	 */
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		List<ProductJB> empList = new ArrayList<ProductJB>();
 		List<ProductJB> stockList;
 		List<History> histories;
 		UpdateLogic uLogic = new UpdateLogic();
 		String action = request.getParameter("action");
+
 		if (action.equals("up1")) {
 			empList = (List<ProductJB>) session.getAttribute("updateList");
 			Integer count = uLogic.executeUpdate(empList);
 			session.setAttribute("count", count);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/resultjsp/resUpdate.jsp");
 			dispatcher.forward(request, response);
+
 		} else {
 			stockList = new ArrayList<ProductJB>();
 			stockList = (List<ProductJB>) session.getAttribute("inOutJBList");
@@ -60,9 +64,11 @@ public class UpdateMain extends HttpServlet {
 			if (action.equals("up2")) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/resInOutjsp/resIn.jsp");
 				dispatcher.forward(request, response);
+
 			} else if(action.equals("up3")){
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/resInOutjsp/resOut.jsp");
 				dispatcher.forward(request, response);
+
 			}
 
 		}

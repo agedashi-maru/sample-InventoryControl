@@ -21,7 +21,12 @@ import model.SelectLogic;
  */
 @WebServlet("/log/SelectMain")
 public class SelectMain extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+
+	final private String noMsg = "※照会方法を選択してください";
+
+	final private String errorMsg = "※項目を入力してください";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -50,9 +55,10 @@ public class SelectMain extends HttpServlet {
 		} else if (hidden.equals("done")) {
 
 			String select = request.getParameter("select");
+
 			if (select == null) {
-				String noMsg = "※照会方法を選択してください";
 				request.setAttribute("noMsg", noMsg);
+
 			} else if (select.equals("all")) {
 
 				proList = sLogic.executeFindAll();
@@ -66,8 +72,8 @@ public class SelectMain extends HttpServlet {
 				String group = request.getParameter("selectgroup");
 
 				if (firstId.equals("") && firststock.equals("") && item.equals("") && kind.equals("") && group.equals("")) {
-					String errorMsg = "※項目を入力してください";
 					request.setAttribute("errorMsg", errorMsg);
+
 				} else {
 					if (!(decision.isInt(firstId)) || firstId.equals("")) {
 						firstId = "0";

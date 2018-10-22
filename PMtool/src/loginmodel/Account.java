@@ -3,8 +3,8 @@ package loginmodel;
 import java.io.Serializable;
 
 public class Account implements Serializable {
-	String userid;
-	String pass;
+	private String userid;
+	private String pass;
 
 	public Account() {
 		super();

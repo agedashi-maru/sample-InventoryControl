@@ -6,7 +6,9 @@ import dao.DaoExce;
 import dao.InsertDao;
 
 public class InsertLogic {
-	InsertDao dao;
+
+	private InsertDao dao;
+
 	public int  executeInsert(List<ProductJB> empList) {
 		dao = new InsertDao();
 		int count = 0;

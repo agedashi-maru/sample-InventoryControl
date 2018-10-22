@@ -7,7 +7,8 @@ import dao.DaoExce;
 import dao.UpdateDao;
 
 public class UpdateLogic {
-	UpdateDao dao;
+
+	private UpdateDao dao;
 
 	public int executeUpdate(List<ProductJB> empList) {
 		dao = new UpdateDao();

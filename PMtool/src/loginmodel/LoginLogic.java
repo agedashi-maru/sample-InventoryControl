@@ -5,8 +5,10 @@ import dao.DaoExce;
 
 public class LoginLogic {
 
+	private boolean isLogin;
+
 	public boolean execute(Account user) {
-		boolean isLogin;
+
 		try {
 			AccountDao dao = new AccountDao();
 

@@ -7,7 +7,8 @@ import dao.DaoExce;
 import dao.SelectDao;
 
 public class SelectLogic {
-	SelectDao dao;
+
+	private SelectDao dao;
 
 	public List<ProductJB> executeFindAll() {
 

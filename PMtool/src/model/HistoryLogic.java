@@ -6,8 +6,8 @@ import dao.DaoExce;
 import dao.HistoryDao;
 
 public class HistoryLogic {
-	List<History> hisList;
-	HistoryDao dao = new HistoryDao();
+	private List<History> hisList;
+	private HistoryDao dao = new HistoryDao();
 
 	public List<History> inLogic() {
 		String sql = "select * from m_history where category = '入庫' order by historytime desc ,historyid desc;";

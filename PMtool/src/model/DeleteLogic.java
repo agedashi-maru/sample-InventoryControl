@@ -6,7 +6,9 @@ import dao.DaoExce;
 import dao.DeleteDao;
 
 public class DeleteLogic {
-	DeleteDao dao;
+
+	private DeleteDao dao;
+
 	public int executeDelete(List<ProductJB> empList) {
 		dao = new DeleteDao();
 		int count = 0;

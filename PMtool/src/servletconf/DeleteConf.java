@@ -21,7 +21,12 @@ import model.SelectLogic;
  */
 @WebServlet("/log/DeleteConf")
 public class DeleteConf extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+
+	final private String DELMSG = "※項目を正しく入力してください";
+
+	final private String NONE = "なし";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -34,6 +39,7 @@ public class DeleteConf extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 		Decision decision = new Decision();
@@ -44,13 +50,16 @@ public class DeleteConf extends HttpServlet {
 		if (action == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menujsp/deleteMenu.jsp");
 			dispatcher.forward(request, response);
+
 		} else if (action.equals("done1")) {
 			List<ProductJB> deleteList = new ArrayList<ProductJB>();
 			String firstId = request.getParameter("deleteid");
 			String firststock = request.getParameter("deletestock");
+
 			if (firstId.equals("") || !(decision.isInt(firstId)) || firstId == null) {
 				firstId = "0";
 			}
+
 			int id = Integer.parseInt(firstId);
 			if (id < 0) {
 				id = 0;
@@ -59,19 +68,24 @@ public class DeleteConf extends HttpServlet {
 			String item = request.getParameter("deleteitem");
 			String kind = request.getParameter("deletekind");
 			String group = request.getParameter("deletegroup");
+
 			if (firststock.equals("") || !(decision.isInt(firststock)) || firststock == null) {
-				firststock = "なし";
+				firststock = NONE;
 				deleteJB = new ProductJB(id, item, kind, group);
+
 			} else {
 				int stock = Integer.parseInt(firststock);
 				deleteJB = new ProductJB(id, item, kind, group, stock);
+
 			}
 
 			if (id == 0 && (item == null || item.length() == 0) && (kind == null || kind.length() == 0)
-					&& (group == null || group.length() == 0) && firststock.equals("なし")) {
+					&& (group == null || group.length() == 0) && firststock.equals(NONE)) {
 				deleteList = selectLogic.executeFindAll();
+
 			} else {
 				deleteList = selectLogic.executeSomeMatch(deleteJB);
+
 			}
 
 			request.setAttribute("deleteList", deleteList);
@@ -98,6 +112,7 @@ public class DeleteConf extends HttpServlet {
 					if ((!(id == 0)) && jb.getId() == id) {
 						deleteJB = new ProductJB(id);
 						deleteIdList.add(deleteJB);
+
 					}
 				}
 
@@ -107,11 +122,12 @@ public class DeleteConf extends HttpServlet {
 				session.setAttribute("deleteIdList", deleteIdList);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/confjsp/confDelete.jsp");
 				dispatcher.forward(request, response);
+
 			}else{
-				String delMsg = "※項目を正しく入力してください";
-				request.setAttribute("delMsg", delMsg);
+				request.setAttribute("delMsg", DELMSG);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menujsp/deleteMenu.jsp");
 				dispatcher.forward(request, response);
+
 			}
 		}
 	}

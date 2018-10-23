@@ -32,7 +32,7 @@ public class UpdateMain extends HttpServlet {
 
 	private final String ACTION = "action";
 
-	private final String COUNT = "COUNT";
+	private final String COUNT = "count";
 
 	private final String INOUT_JBLIST = "inOutJBList";
 

@@ -24,9 +24,9 @@ public class DeleteConf extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	final private String DELMSG = "※項目を正しく入力してください";
+	private final String DELMSG = "※項目を正しく入力してください";
 
-	final private String NONE = "なし";
+	private final String NONE = "なし";
 
 	/**
 	 * @see HttpServlet#HttpServlet()

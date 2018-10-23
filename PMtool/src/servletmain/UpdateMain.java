@@ -24,6 +24,23 @@ public class UpdateMain extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	private final String UP_1 = "up1";
+
+	private final String UP_2 = "up2";
+
+	private final String UP_3 = "up3";
+
+	private final String ACTION = "action";
+
+	private final String COUNT = "COUNT";
+
+	private final String INOUT_JBLIST = "inOutJBList";
+
+	private final String UPDATE_LIST = "updateList";
+
+	private final String HISTORY_LIST = "historyList";
+
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -42,30 +59,31 @@ public class UpdateMain extends HttpServlet {
 		List<ProductJB> stockList;
 		List<History> histories;
 		UpdateLogic uLogic = new UpdateLogic();
-		String action = request.getParameter("action");
+		String action = request.getParameter(ACTION);
 
-		if (action.equals("up1")) {
-			empList = (List<ProductJB>) session.getAttribute("updateList");
+		if (action.equals(UP_1)) {
+			empList = (List<ProductJB>) session.getAttribute(UPDATE_LIST);
 			Integer count = uLogic.executeUpdate(empList);
-			session.setAttribute("count", count);
+			session.setAttribute(COUNT, count);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/resultjsp/resUpdate.jsp");
 			dispatcher.forward(request, response);
 
 		} else {
 			stockList = new ArrayList<ProductJB>();
-			stockList = (List<ProductJB>) session.getAttribute("inOutJBList");
+			stockList = (List<ProductJB>) session.getAttribute(INOUT_JBLIST);
 
 			histories = new ArrayList<History>();
-			histories = (List<History>) session.getAttribute("historyList");
+			histories = (List<History>) session.getAttribute(HISTORY_LIST);
 
 			Integer count = uLogic.stockInOut(stockList, histories);
-			request.setAttribute("count", count);
+			request.setAttribute(COUNT, count);
 
-			if (action.equals("up2")) {
+			if (action.equals(UP_2)) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/resInOutjsp/resIn.jsp");
 				dispatcher.forward(request, response);
 
-			} else if(action.equals("up3")){
+			} else if(action.equals(UP_3)){
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/resInOutjsp/resOut.jsp");
 				dispatcher.forward(request, response);
 

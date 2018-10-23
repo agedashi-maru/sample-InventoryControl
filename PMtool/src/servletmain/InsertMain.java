@@ -23,6 +23,10 @@ public class InsertMain extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	private final String INSERT_JBLIST = "insertjbList";
+
+	private final String COUNT = "count";
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,11 +41,11 @@ public class InsertMain extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		List<ProductJB> empList = new ArrayList<ProductJB>();
-		empList = (List<ProductJB>)session.getAttribute("insertjbList");
+		empList = (List<ProductJB>)session.getAttribute(INSERT_JBLIST);
 		InsertLogic iLogic = new InsertLogic();
 		Integer count = iLogic.executeInsert(empList);
 
-		session.setAttribute("count",count);
+		session.setAttribute(COUNT, count);
 
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/resultjsp/resInsert.jsp");

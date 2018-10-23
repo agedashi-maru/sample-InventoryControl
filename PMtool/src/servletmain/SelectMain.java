@@ -24,9 +24,44 @@ public class SelectMain extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	final private String noMsg = "※照会方法を選択してください";
+	private final String NO_SELECT_ERROR_MSG = "※照会方法を選択してください";
 
-	final private String errorMsg = "※項目を入力してください";
+	private final String EMPTY_ERROR_MSG = "※項目を入力してください";
+
+	private final String ENCODE_UTF8 = "UTF-8";
+
+	private final String NO_MSG = "noMsg";
+
+	private final String ERRORMSG = "errorMsg";
+
+	private final String ALL = "all";
+
+	private final String DONE = "done";
+
+	private final String HIDDEN = "hidden";
+
+	private final String SELECT = "select";
+
+	private final String SELECT_1 = "select1";
+
+	private final String SELECT_2 = "select2";
+
+	private final String PRO_LIST = "proList";
+
+	private final String SELECT_ID = SELECT + "id";
+
+	private final String SELECT_STOCK = SELECT + "stock";
+
+	private final String SELECT_ITEM = SELECT + "item";
+
+	private final String SELECT_KIND = SELECT + "kind";
+
+	private final String SELECT_GROUP = SELECT + "group";
+
+	private final String ZERO = "0";
+
+	private final String MINUS_1 = "-1";
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -40,9 +75,9 @@ public class SelectMain extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding(ENCODE_UTF8);
 		List<ProductJB> proList = new ArrayList<ProductJB>();
-		String hidden = request.getParameter("hidden");
+		String hidden = request.getParameter(HIDDEN);
 		ProductJB jb = null;
 		Decision decision = new Decision();
 		SelectLogic sLogic = new SelectLogic();
@@ -52,31 +87,31 @@ public class SelectMain extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menujsp/selectMenu.jsp");
 			dispatcher.forward(request, response);
 
-		} else if (hidden.equals("done")) {
+		} else if (hidden.equals(DONE)) {
 
-			String select = request.getParameter("select");
+			String select = request.getParameter(SELECT);
 
 			if (select == null) {
-				request.setAttribute("noMsg", noMsg);
+				request.setAttribute(NO_MSG, NO_SELECT_ERROR_MSG);
 
-			} else if (select.equals("all")) {
+			} else if (select.equals(ALL)) {
 
 				proList = sLogic.executeFindAll();
-				session.setAttribute("proList", proList);
+				session.setAttribute(PRO_LIST, proList);
 
 			} else {
-				String firstId = request.getParameter("selectid");
-				String firststock = request.getParameter("selectstock");
-				String item = request.getParameter("selectitem");
-				String kind = request.getParameter("selectkind");
-				String group = request.getParameter("selectgroup");
+				String firstId = request.getParameter(SELECT_ID);
+				String firststock = request.getParameter(SELECT_STOCK);
+				String item = request.getParameter(SELECT_ITEM);
+				String kind = request.getParameter(SELECT_KIND);
+				String group = request.getParameter(SELECT_GROUP);
 
 				if (firstId.equals("") && firststock.equals("") && item.equals("") && kind.equals("") && group.equals("")) {
-					request.setAttribute("errorMsg", errorMsg);
+					request.setAttribute(ERRORMSG, EMPTY_ERROR_MSG);
 
 				} else {
 					if (!(decision.isInt(firstId)) || firstId.equals("")) {
-						firstId = "0";
+						firstId = ZERO;
 					}
 					int id = Integer.parseInt(firstId);
 					if (id < 0) {
@@ -84,16 +119,16 @@ public class SelectMain extends HttpServlet {
 					}
 
 					if (!(decision.isInt(firststock)) || firststock.equals("") || (firststock == null)) {
-						firststock = "-1";
+						firststock = MINUS_1;
 					}
 					int stock = Integer.parseInt(firststock);
 					jb = new ProductJB(id, item, kind, group, stock);
-					if (select.equals("select1")) {
+					if (select.equals(SELECT_1)) {
 						proList = sLogic.executeAllMatch(jb);
-					} else if (select.equals("select2")) {
+					} else if (select.equals(SELECT_2)) {
 						proList = sLogic.executeStockMatch(jb);
 					}
-					session.setAttribute("proList", proList);
+					session.setAttribute(PRO_LIST, proList);
 				}
 
 			}

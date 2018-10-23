@@ -23,6 +23,10 @@ public class DeleteMain extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	private final String DELETEID_LIST = "deleteIdList";
+
+	private final String COUNT = "count";
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,14 +38,14 @@ public class DeleteMain extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<ProductJB> empList = new ArrayList<ProductJB>();
 
+		List<ProductJB> empList = new ArrayList<ProductJB>();
 		HttpSession session = request.getSession();
-		empList = (List<ProductJB>) session.getAttribute("deleteIdList");
+		empList = (List<ProductJB>) session.getAttribute(DELETEID_LIST);
 		DeleteLogic dLogic = new DeleteLogic();
 		Integer count = dLogic.executeDelete(empList);
 
-		session.setAttribute("count", count);
+		session.setAttribute(COUNT, count);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/resultjsp/resDelete.jsp");
 		dispatcher.forward(request, response);

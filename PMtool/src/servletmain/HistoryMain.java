@@ -23,7 +23,21 @@ public class HistoryMain extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	final private String noHistory = "※照会方法を選択してください";
+	private final String ENCODE_UTF8 = "UTF-8";
+
+	private final String NO_HISTORY_ERROR_MSG = "※照会方法を選択してください";
+
+	private final String HISTORY = "history";
+
+	private final String HIS_LIST = "hisList";
+
+	private final String NO_HISTORY = "noHistory";
+
+	private final String HIS_1 = "his1";
+
+	private final String HIS_2 = "his2";
+
+	private final String HIS_3 = "his3";
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,27 +51,27 @@ public class HistoryMain extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding(ENCODE_UTF8);
 		HttpSession session = request.getSession();
 		List<History> hisList = new ArrayList<History>();
 		HistoryLogic historyLogic = new HistoryLogic();
-		String history = request.getParameter("history");
+		String history = request.getParameter(HISTORY);
 
 		if (history==null) {
-			request.setAttribute("noHistory", noHistory);
+			request.setAttribute(NO_HISTORY, NO_HISTORY_ERROR_MSG);
 
 		}else{
-			if (history.equals("his1")) {
+			if (history.equals(HIS_1)) {
 			hisList = historyLogic.inLogic();
 
-			}else if(history.equals("his2")){
+			}else if(history.equals(HIS_2)){
 				hisList = historyLogic.outLogic();
 
-			}else if (history.equals("his3")) {
+			}else if (history.equals(HIS_3)) {
 				hisList = historyLogic.inOutLogic();
 
 			}
-			session.setAttribute("hisList", hisList);
+			session.setAttribute(HIS_LIST, hisList);
 
 		}
 

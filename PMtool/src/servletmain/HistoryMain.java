@@ -57,7 +57,7 @@ public class HistoryMain extends HttpServlet {
 		HistoryLogic historyLogic = new HistoryLogic();
 		String history = request.getParameter(HISTORY);
 
-		if (history==null) {
+		if (history == null) {
 			request.setAttribute(NO_HISTORY, NO_HISTORY_ERROR_MSG);
 
 		}else{

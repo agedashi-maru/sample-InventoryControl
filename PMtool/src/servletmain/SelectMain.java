@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
+
 import model.Decision;
 import model.ProductJB;
 import model.SelectLogic;
@@ -106,7 +108,7 @@ public class SelectMain extends HttpServlet {
 				String kind = request.getParameter(SELECT_KIND);
 				String group = request.getParameter(SELECT_GROUP);
 
-				if (firstId.equals("") && firststock.equals("") && item.equals("") && kind.equals("") && group.equals("")) {
+				if (StringUtils.isEmpty(firstId) && firststock.equals("") && item.equals("") && kind.equals("") && group.equals("")) {
 					request.setAttribute(ERRORMSG, EMPTY_ERROR_MSG);
 
 				} else {

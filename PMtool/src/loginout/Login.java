@@ -18,7 +18,16 @@ import loginmodel.LoginLogic;
  */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+
+	private final String ENCODE_UTF8 = "UTF-8";
+
+	private final String USER_ID = "userid";
+
+	private final String PASS = "pass";
+
+	private final String USER = "user";
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,9 +47,9 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String userid = request.getParameter("userid");
-		String pass = request.getParameter("pass");
+		request.setCharacterEncoding(ENCODE_UTF8);
+		String userid = request.getParameter(USER_ID);
+		String pass = request.getParameter(PASS);
 		Account user = new Account(userid,pass);
 		LoginLogic logic = new LoginLogic();
 
@@ -48,7 +57,7 @@ public class Login extends HttpServlet {
 
 		if (isLogin) {
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
+			session.setAttribute(USER, user);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menujsp/firstMenu.jsp");
 			dispatcher.forward(request, response);

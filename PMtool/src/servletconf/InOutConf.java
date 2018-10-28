@@ -28,7 +28,7 @@ import model.SelectLogic;
 public class InOutConf extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-
+	/*エンコーディング：UTF-8*/
 	private final String ENCODE_UTF8 = "UTF-8";
 
 	private final String NONE = "なし";

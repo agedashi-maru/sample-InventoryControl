@@ -52,7 +52,7 @@ public class InsertConf extends HttpServlet {
 		List<ProductJB> empList = new ArrayList<ProductJB>();
 
 		if (hidden == null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menujsp/insertMenu.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/insertMenu.jsp");
 			dispatcher.forward(request, response);
 
 		} else if (hidden.equals("done")) {
@@ -118,18 +118,18 @@ public class InsertConf extends HttpServlet {
 			if (flag) {
 				String dupMsg = "※商品名が重複しているか、既に登録されています";
 				request.setAttribute("dupMsg", dupMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menujsp/insertMenu.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/insertMenu.jsp");
 				dispatcher.forward(request, response);
 			}else if (insertjbList.size() != 0) {
 				HttpSession session = request.getSession();
 				session.setAttribute("insertjbList", insertjbList);
 
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/confjsp/confInsert.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/confjsp/confInsert.jsp");
 				dispatcher.forward(request, response);
 			} else {
 				String insMsg = "※項目を正しく入力してください";
 				request.setAttribute("insMsg", insMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menujsp/insertMenu.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/insertMenu.jsp");
 				dispatcher.forward(request, response);
 			}
 

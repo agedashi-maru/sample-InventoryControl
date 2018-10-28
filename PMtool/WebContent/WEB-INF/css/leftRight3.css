@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+
+div.left {
+	margin-top: 35px;
+	float: left;
+	width: 50%;
+}
+
+div.right {
+	margin-top: 35px;
+	font-size: 17px;
+	float: right;
+	width: 48%;
+	padding-right: 10px;
+}
+
+div.left table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+div.left th {
+	border: 1px solid black;
+	padding: 13px 0;
+	color: white;
+}
+
+div.left td {
+	background-color: white;
+	border: 1px solid black;
+	padding: 14px 0;
+}
+
+th.type2 {
+	padding: 0 3px;
+}
+
+td.type2 {
+	padding: 0 3px;
+}
+
+div.left table th.type {
+	background-color: #0079c2;
+	color: #f2f2f2;
+	font-size: 23px;
+}
+
+input[type="text"] {
+	border: none;
+	height: 25px;
+	font-size: 19px;
+	text-align: center;
+}
+
+/*input[type="text"].id {
+  text-align: center;
+}
+
+input[type="text"].stock {
+  text-align: center;
+}*/

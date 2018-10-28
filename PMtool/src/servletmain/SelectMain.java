@@ -86,7 +86,7 @@ public class SelectMain extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		if (hidden == null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menujsp/selectMenu.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/selectMenu.jsp");
 			dispatcher.forward(request, response);
 
 		} else if (hidden.equals(DONE)) {
@@ -135,7 +135,7 @@ public class SelectMain extends HttpServlet {
 
 			}
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menujsp/selectMenu.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/selectMenu.jsp");
 			dispatcher.forward(request, response);
 		}
 

@@ -66,7 +66,7 @@ public class UpdateMain extends HttpServlet {
 			Integer count = uLogic.executeUpdate(empList);
 			session.setAttribute(COUNT, count);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/resultjsp/resUpdate.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resultjsp/resUpdate.jsp");
 			dispatcher.forward(request, response);
 
 		} else {
@@ -80,11 +80,11 @@ public class UpdateMain extends HttpServlet {
 			request.setAttribute(COUNT, count);
 
 			if (action.equals(UP_2)) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/resInOutjsp/resIn.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resInOutjsp/resIn.jsp");
 				dispatcher.forward(request, response);
 
 			} else if(action.equals(UP_3)){
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/resInOutjsp/resOut.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resInOutjsp/resOut.jsp");
 				dispatcher.forward(request, response);
 
 			}

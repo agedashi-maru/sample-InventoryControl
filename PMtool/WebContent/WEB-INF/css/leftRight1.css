@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+div.left {
+	margin-top: 35px;
+	float: left;
+	width: 48%;
+}
+
+div.right {
+	margin-top: 32px;
+	font-size: 17px;
+	float: right;
+	width: 48%;
+	padding-right: 10px;
+}
+
+div.left table {
+	margin-top: 20px;
+	font-size: 30px;
+	width: 450px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	font-weight: bold;
+}
+
+div.left table td {
+	border: 1px solid black;
+	padding: 13px 0;
+}
+
+div.left table td.inp {
+	background-color: white;
+}
+
+div.left table td.id, .count {
+	background-color: #0079c2;
+	color: white;
+}
+
+input[type="text"] {
+	border: none;
+	height: 25px;
+	font-size: 19px;
+	background-color: white;
+	text-align: center;
+}

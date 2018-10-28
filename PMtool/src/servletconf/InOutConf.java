@@ -61,10 +61,10 @@ public class InOutConf extends HttpServlet {
 		List<String> strout = new ArrayList<String>();
 		String inout = request.getParameter("action");
 		if (inout.equals("in")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/inoutjsp/stockin.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/inoutjsp/stockin.jsp");
 			dispatcher.forward(request, response);
 		} else if(inout.equals("out")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/inoutjsp/stockout.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/inoutjsp/stockout.jsp");
 			dispatcher.forward(request, response);
 		}else if (inout.equals("stockin")) {
 
@@ -130,18 +130,18 @@ public class InOutConf extends HttpServlet {
 			if (flag) {
 				String dupMsg = "※商品IDが重複しています";
 				request.setAttribute("dupMsg", dupMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/inoutjsp/stockin.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/inoutjsp/stockin.jsp");
 				dispatcher.forward(request, response);
 			} else if (historyList.size() != 0) {
 				HttpSession session = request.getSession();
 				session.setAttribute("inOutJBList", inOutJBList);
 				session.setAttribute("historyList", historyList);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/confInOutjsp/confIn.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/confInOutjsp/confIn.jsp");
 				dispatcher.forward(request, response);
 			}else {
 				String msg = "※項目を正しく入力してください";
 				request.setAttribute("msg", msg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/inoutjsp/stockin.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/inoutjsp/stockin.jsp");
 				dispatcher.forward(request, response);
 			}
 
@@ -215,19 +215,19 @@ public class InOutConf extends HttpServlet {
 			if (flag) {
 				String dupMsg = "※商品IDが重複しています";
 				request.setAttribute("dupMsg", dupMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/inoutjsp/stockout.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/inoutjsp/stockout.jsp");
 				dispatcher.forward(request, response);
 			} else if (historyList.size() != 0) {
 				HttpSession session = request.getSession();
 				session.setAttribute("inOutJBList", inOutJBList);
 				session.setAttribute("historyList", historyList);
 				request.setAttribute("strout", strout);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/confInOutjsp/confOut.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/confInOutjsp/confOut.jsp");
 				dispatcher.forward(request, response);
 			}else{
 				String msg = "※項目を正しく入力してください";
 				request.setAttribute("msg", msg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/inoutjsp/stockout.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/inoutjsp/stockout.jsp");
 				dispatcher.forward(request, response);
 			}
 
@@ -266,10 +266,10 @@ public class InOutConf extends HttpServlet {
 			session.setAttribute("productList", productList);
 
 			if (inout.equals("inout1")) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/inoutjsp/stockin.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/inoutjsp/stockin.jsp");
 				dispatcher.forward(request, response);
 			}else if(inout.equals("inout2")){
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/inoutjsp/stockout.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/inoutjsp/stockout.jsp");
 				dispatcher.forward(request, response);
 			}
 		}

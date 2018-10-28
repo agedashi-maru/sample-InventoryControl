@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-div.conf{
+div.conf {
 	margin-top: 80px;
 }
 
@@ -20,7 +20,7 @@ th {
 	border: 1px solid black;
 	font-weight: bold;
 	padding: 2px 35px;
-	background-color:#6cbb5a;
+	background-color: #6cbb5a;
 	color: white;
 }
 

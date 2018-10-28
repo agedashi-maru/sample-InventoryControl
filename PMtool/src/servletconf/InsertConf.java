@@ -23,7 +23,14 @@ import model.SelectLogic;
  */
 @WebServlet("/log/InsertConf")
 public class InsertConf extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+
+	private final String ENCODE_UTF8 = "UTF-8";
+
+	private final String NONE_CORRESPOND = "該当なし";
+
+	private final String ZERO = "0";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -36,7 +43,7 @@ public class InsertConf extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding(ENCODE_UTF8);
 		String hidden = request.getParameter("hidden");
 		SelectLogic selectLogic = new SelectLogic();
 		Decision decision = new Decision();
@@ -52,27 +59,27 @@ public class InsertConf extends HttpServlet {
 			for (int i = 1; i <= 5; i++) {
 				String item = request.getParameter("insertitem" + i);
 				if (item.length() == 0 || item == null) {
-					item = "該当なし";
+					item = NONE_CORRESPOND;
 				}
 				String kind = request.getParameter("insertkind" + i);
 				if (kind.length() == 0 || kind == null) {
-					kind = "該当なし";
+					kind = NONE_CORRESPOND;
 				}
 				String group = request.getParameter("insertgroup" + i);
 				if (group.length() == 0 || group == null) {
-					group = "該当なし";
+					group = NONE_CORRESPOND;
 				}
 				String firststock = request.getParameter("insertstock" + i);
 
 				if (firststock.length() == 0 || firststock == null || !(decision.isInt(firststock))) {
-					firststock = "0";
+					firststock = ZERO;
 				}
 				int stock = Integer.parseInt(firststock);
 				if (stock < 0) {
 					stock = 0;
 				}
 
-				if (item.equals("該当なし") && kind.equals("該当なし") && group.equals("該当なし") && firststock.equals("0")) {
+				if (item.equals(NONE_CORRESPOND) && kind.equals(NONE_CORRESPOND) && group.equals(NONE_CORRESPOND) && firststock.equals(ZERO)) {
 					continue;
 				}
 

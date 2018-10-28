@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
+
 import model.Decision;
 import model.History;
 import model.ProductJB;
@@ -24,7 +26,18 @@ import model.SelectLogic;
  */
 @WebServlet("/log/InOutConf")
 public class InOutConf extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+
+	private final String ENCODE_UTF8 = "UTF-8";
+
+	private final String NONE = "なし";
+
+	private final String PUT_IN = "入庫";
+
+	private final String PUT_OUT = "出庫";
+
+	private final String ZERO = "0";
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,7 +50,7 @@ public class InOutConf extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding(ENCODE_UTF8);
 		ProductJB inOutJB = null;
 		History history = null;
 		SelectLogic selectLogic = new SelectLogic();
@@ -62,7 +75,7 @@ public class InOutConf extends HttpServlet {
 				firstcount = request.getParameter("count" + i);
 
 				if (!(decision.isInt(firstId)) || firstId.equals("")) {
-					firstId = "0";
+					firstId = ZERO;
 				}
 				int id = Integer.parseInt(firstId);
 				if (id < 0) {
@@ -70,7 +83,7 @@ public class InOutConf extends HttpServlet {
 				}
 
 				if (!(decision.isInt(firstcount)) || firstcount.equals("")) {
-					firstcount= "0";
+					firstcount= ZERO;
 				}
 				int count = Integer.parseInt(firstcount);
 				if (count < 0) {
@@ -84,7 +97,7 @@ public class InOutConf extends HttpServlet {
 						if (productJB.getId() == id) {
 							int stock = productJB.getStock() + count;
 							inOutJB = new ProductJB(id,productJB.getItem(),stock);
-							history = new History("入庫", count,id);
+							history = new History(PUT_IN, count,id);
 							break;
 						}
 
@@ -143,7 +156,7 @@ public class InOutConf extends HttpServlet {
 				firstcount = request.getParameter("count" + i);
 
 				if (!(decision.isInt(firstId)) || firstId.equals("")) {
-					firstId = "0";
+					firstId = ZERO;
 				}
 				int id = Integer.parseInt(firstId);
 				if (id < 0) {
@@ -151,7 +164,7 @@ public class InOutConf extends HttpServlet {
 				}
 
 				if (!(decision.isInt(firstcount)) || firstcount.equals("")) {
-					firstcount = "0";
+					firstcount = ZERO;
 				}
 				int count = Integer.parseInt(firstcount);
 				if (count < 0) {
@@ -165,7 +178,7 @@ public class InOutConf extends HttpServlet {
 						if (productJB.getId() == id) {
 							stock = productJB.getStock() - count;
 							inOutJB = new ProductJB(id,productJB.getItem(),stock);
-							history = new History("出庫", count,id);
+							history = new History(PUT_OUT, count,id);
 							break;
 						}
 					}
@@ -223,8 +236,8 @@ public class InOutConf extends HttpServlet {
 			String firstId = request.getParameter("inoutid");
 			String firstStock = request.getParameter("inoutstock");
 
-			if (firstId.equals("") || !(decision.isInt(firstId))) {
-				firstId = "0";
+			if (StringUtils.isEmpty(firstId) || !(decision.isInt(firstId))) {
+				firstId = ZERO;
 			}
 			int id = Integer.parseInt(firstId);
 			if (id < 0) {
@@ -234,14 +247,14 @@ public class InOutConf extends HttpServlet {
 			String item = request.getParameter("inoutitem");
 			String kind = request.getParameter("inoutkind");
 			String group = request.getParameter("inoutgroup");
-			if (firstStock.equals("") || !(decision.isInt(firstStock))) {
-				firstStock = "なし";
+			if (StringUtils.isEmpty(firstStock) || !(decision.isInt(firstStock))) {
+				firstStock = NONE;
 			}
 			selectLogic = new SelectLogic();
 
-			if (id==0 && (item==null || item.length()==0) && (kind==null || kind.length()==0) && (group==null || group.length()==0) && firstStock.equals("なし")) {
+			if (id==0 && StringUtils.isEmpty(item) && StringUtils.isEmpty(kind) && StringUtils.isEmpty(group) && firstStock.equals(NONE)) {
 				productList = selectLogic.executeFindAll();
-			}else if (firstStock.equals("なし")) {
+			}else if (firstStock.equals(NONE)) {
 				inOutJB = new ProductJB(id,item,kind,group);
 				productList = selectLogic.executeSomeMatch(inOutJB);
 			}else {

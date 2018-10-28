@@ -14,28 +14,28 @@ div.right {
 	padding-right: 10px;
 }
 
-div.left table{
+div.left table {
 	border: 1px solid black;
 	border-collapse: collapse;
 }
 
-div.left th{
+div.left th {
 	border: 1px solid black;
 	padding: 13px 0;
 	color: white;
 }
 
-div.left td{
-	background-color:white;
+div.left td {
+	background-color: white;
 	border: 1px solid black;
 	padding: 14px 0;
 }
 
-th.type2{
+th.type2 {
 	padding: 0 3px;
 }
 
-td.type2{
+td.type2 {
 	padding: 0 3px;
 }
 
@@ -46,10 +46,10 @@ div.left table th.type {
 }
 
 input[type="text"] {
- border: none;
-height: 25px;
-font-size: 19px;
-text-align: center;
+	border: none;
+	height: 25px;
+	font-size: 19px;
+	text-align: center;
 }
 
 /*input[type="text"].id {

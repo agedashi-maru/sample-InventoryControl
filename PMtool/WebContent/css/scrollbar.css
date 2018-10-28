@@ -15,7 +15,6 @@ tbody.scrollBody {
 	background-color: white;
 	overflow-y: scroll;
 	height: 250px;
-
 	border: 1px solid #a9a9a9;
 }
 
@@ -30,9 +29,8 @@ table.scroll tbody.scrollBody td {
 }
 
 .scroll td {
-  table-layout: fixed;
+	table-layout: fixed;
 }
-
 
 /*
 th.typeA {

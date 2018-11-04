@@ -47,7 +47,7 @@ public class DeleteMain extends HttpServlet {
 
 		session.setAttribute(COUNT, count);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resultjsp/resDelete.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/resultjsp/resDelete.jsp");
 		dispatcher.forward(request, response);
 	}
 

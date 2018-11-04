@@ -75,7 +75,7 @@ public class HistoryMain extends HttpServlet {
 
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/selectMenu.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/selectMenu.jsp");
 		dispatcher.forward(request, response);
 	}
 

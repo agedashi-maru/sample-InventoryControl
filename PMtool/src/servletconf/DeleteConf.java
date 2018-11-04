@@ -48,7 +48,7 @@ public class DeleteConf extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		if (action == null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/deleteMenu.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
 			dispatcher.forward(request, response);
 
 		} else if (action.equals("done1")) {
@@ -90,7 +90,7 @@ public class DeleteConf extends HttpServlet {
 
 			request.setAttribute("deleteList", deleteList);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/deleteMenu.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
 			dispatcher.forward(request, response);
 
 		} else if (action.equals("done2")) {
@@ -120,12 +120,12 @@ public class DeleteConf extends HttpServlet {
 			if (deleteIdList.size() != 0) {
 				deleteIdList = selectLogic.executeSelectById(deleteIdList);
 				session.setAttribute("deleteIdList", deleteIdList);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/confjsp/confDelete.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/confjsp/confDelete.jsp");
 				dispatcher.forward(request, response);
 
 			}else{
 				request.setAttribute("delMsg", DELMSG);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/deleteMenu.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
 				dispatcher.forward(request, response);
 
 			}
@@ -137,7 +137,7 @@ public class DeleteConf extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/confjsp/confDelete.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/confjsp/confDelete.jsp");
 		dispatcher.forward(request, response);
 	}
 

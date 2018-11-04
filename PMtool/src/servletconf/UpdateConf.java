@@ -44,7 +44,7 @@ public class UpdateConf extends HttpServlet {
 		List<ProductJB> empList = new ArrayList<ProductJB>();
 
 		if (action == null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/updateMenu.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
 			dispatcher.forward(request, response);
 
 		} else if (action.equals("done1")) {
@@ -81,7 +81,7 @@ public class UpdateConf extends HttpServlet {
 
 			request.setAttribute("updateList", updateList);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/updateMenu.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
 			dispatcher.forward(request, response);
 
 		} else if (action.equals("done2")) {
@@ -159,16 +159,16 @@ public class UpdateConf extends HttpServlet {
 			if (flag) {
 				String dupMsg = "※商品名が重複しているか、既に登録されています";
 				request.setAttribute("dupMsg", dupMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/updateMenu.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
 				dispatcher.forward(request, response);
 			} else if (updateList.size() != 0) {
 				session.setAttribute("updateList", updateList);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/confjsp/confUpdate.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/confjsp/confUpdate.jsp");
 				dispatcher.forward(request, response);
 			} else {
 				String upMsg = "※項目を正しく入力してください";
 				request.setAttribute("upMsg", upMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/updateMenu.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
 				dispatcher.forward(request, response);
 			}
 		}

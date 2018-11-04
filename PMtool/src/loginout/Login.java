@@ -59,7 +59,7 @@ public class Login extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute(USER, user);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menujsp/firstMenu.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/firstMenu.jsp");
 			dispatcher.forward(request, response);
 		}else {
 			response.sendRedirect("/PMtool/Logfail");

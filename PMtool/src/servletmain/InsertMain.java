@@ -48,7 +48,7 @@ public class InsertMain extends HttpServlet {
 		session.setAttribute(COUNT, count);
 
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resultjsp/resInsert.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/resultjsp/resInsert.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -4,21 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%
-	List<History> hisList = (List<History>) session.getAttribute("hisList");
-%>
-<%
-	List<ProductJB> proList = (List<ProductJB>) session.getAttribute("proList");
-%>
-<%
-	String noMsg = (String) request.getAttribute("noMsg");
-%>
-<%
-	String errorMsg = (String) request.getAttribute("errorMsg");
-%>
-<%
-	String noHistory = (String) request.getAttribute("noHistory");
-%>
+<%@ taglib prefix="c_" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
@@ -63,25 +49,17 @@
 						</tr>
 					</thead>
 					<tbody class="scrollBody">
-						<%
-							if (proList != null) {
-						%>
-						<%
-							for (ProductJB product : proList) {
-						%>
-						<tr>
-							<td class="type1"><%=product.getId()%></td>
-							<td class="type2"><%=product.getItem()%></td>
-							<td class="type3"><%=product.getKind()%></td>
-							<td class="type4"><%=product.getGroup()%></td>
-							<td class="type5"><%=product.getStock()%></td>
-						</tr>
-						<%
-							}
-						%>
-						<%
-							}
-						%>
+						<c_:if test="${!empty proList}">
+							<c_:forEach var="product" items="${proList}">
+								<tr>
+									<td class="type1"><c_:out value="${product.id}" /></td>
+									<td class="type2"><c_:out value="${product.item}" /></td>
+									<td class="type3"><c_:out value="${product.kind}" /></td>
+									<td class="type4"><c_:out value="${product.group}" /></td>
+									<td class="type5"><c_:out value="${product.stock}" /></td>
+								</tr>
+							</c_:forEach>
+						</c_:if>
 					</tbody>
 				</table>
 				<p>
@@ -89,20 +67,12 @@
 				</p>
 				<input type="hidden" name="hidden" value="done">
 			</form>
-			<%
-				if (noMsg != null) {
-			%>
-			<%=noMsg%>
-			<%
-				}
-			%>
-			<%
-				if (errorMsg != null) {
-			%>
-			<%=errorMsg%>
-			<%
-				}
-			%>
+			<c_:if test="${!empty noMsg}">
+				<c_:out value="${noMsg}" />
+			</c_:if>
+			<c_:if test="${!empty errorMsg}">
+				<c_:out value="${errorMsg}" />
+			</c_:if>
 
 		</div>
 		<div class="right">
@@ -124,38 +94,27 @@
 						</tr>
 					</thead>
 					<tbody class="scrollBody">
-						<%
-							if (hisList != null) {
-						%>
-						<%
-							for (History history : hisList) {
-						%>
-						<tr>
-							<td class="typeA"><%=history.getHistoryid()%></td>
-							<td class="typeB"><%=history.getHistorytime()%></td>
-							<td class="typeC"><%=history.getCategory()%></td>
-							<td class="typeD"><%=history.getNum()%></td>
-							<td class="typeE"><%=history.getId()%></td>
-						</tr>
-						<%
-							}
-						%>
-						<%
-							}
-						%>
+						<c_:if test="${!empty hisList}">
+							<c_:forEach var="history" items="${hisList}">
+								<tr>
+									<td class="typeA"><c_:out value="${history.historyid}" /></td>
+									<td class="typeB"><c_:out value="${history.historytime}" /></td>
+									<td class="typeC"><c_:out value="${history.category}" /></td>
+									<td class="typeD"><c_:out value="${history.num}" /></td>
+									<td class="typeE"><c_:out value="${history.id}" /></td>
+								</tr>
+							</c_:forEach>
+						</c_:if>
 					</tbody>
 				</table>
 				<p>
 					<input class="subm" type="submit" value="照会">
 				</p>
 			</form>
-			<%
-				if (noHistory != null) {
-			%>
-			<%=noHistory%>
-			<%
-				}
-			%>
+			<c_:if test="${!empty noHistory}">
+				<c_:out value="${noHistory}" />
+			</c_:if>
+
 		</div>
 	</div>
 	<br clear="all">

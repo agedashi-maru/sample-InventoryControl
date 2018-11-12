@@ -20,7 +20,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/leftRight1.css"
 	type="text/css">
-<title>メニュー</title>
+<title>在庫データの削除</title>
 </head>
 <body>
 	<div class="main">

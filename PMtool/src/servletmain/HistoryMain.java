@@ -23,8 +23,6 @@ public class HistoryMain extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private final String ENCODE_UTF8 = "UTF-8";
-
 	private final String NO_HISTORY_ERROR_MSG = "※照会方法を選択してください";
 
 	private final String HISTORY = "history";
@@ -51,7 +49,6 @@ public class HistoryMain extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding(ENCODE_UTF8);
 		HttpSession session = request.getSession();
 		List<History> hisList = new ArrayList<History>();
 		HistoryLogic historyLogic = new HistoryLogic();

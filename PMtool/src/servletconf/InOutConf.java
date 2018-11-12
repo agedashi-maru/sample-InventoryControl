@@ -28,8 +28,6 @@ import model.SelectLogic;
 public class InOutConf extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	/*エンコーディング：UTF-8*/
-	private final String ENCODE_UTF8 = "UTF-8";
 
 	private final String NONE = "なし";
 
@@ -50,7 +48,7 @@ public class InOutConf extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding(ENCODE_UTF8);
+
 		ProductJB inOutJB = null;
 		History history = null;
 		SelectLogic selectLogic = new SelectLogic();

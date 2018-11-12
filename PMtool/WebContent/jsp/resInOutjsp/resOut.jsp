@@ -11,7 +11,7 @@
 	href="${pageContext.request.contextPath}/css/all.css" type="text/css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/conf.css" type="text/css">
-<title>出庫処理</title>
+<title>出庫処理結果</title>
 </head>
 <body>
 	<div class="main">

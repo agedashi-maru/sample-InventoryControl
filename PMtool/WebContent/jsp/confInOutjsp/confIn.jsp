@@ -20,7 +20,7 @@
 	href="${pageContext.request.contextPath}/css/all.css" type="text/css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/conf.css" type="text/css">
-<title>入庫</title>
+<title>入庫確認</title>
 </head>
 <body>
 	<div class="main">

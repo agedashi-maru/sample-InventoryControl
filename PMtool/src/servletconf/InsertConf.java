@@ -26,8 +26,6 @@ public class InsertConf extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private final String ENCODE_UTF8 = "UTF-8";
-
 	private final String NONE_CORRESPOND = "該当なし";
 
 	private final String ZERO = "0";
@@ -43,7 +41,7 @@ public class InsertConf extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding(ENCODE_UTF8);
+
 		String hidden = request.getParameter("hidden");
 		SelectLogic selectLogic = new SelectLogic();
 		Decision decision = new Decision();

@@ -38,6 +38,7 @@ public class LogFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = ((HttpServletRequest) request).getSession(false);
 		if (session == null) {

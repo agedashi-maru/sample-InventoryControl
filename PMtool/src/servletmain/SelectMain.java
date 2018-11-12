@@ -30,8 +30,6 @@ public class SelectMain extends HttpServlet {
 
 	private final String EMPTY_ERROR_MSG = "※項目を入力してください";
 
-	private final String ENCODE_UTF8 = "UTF-8";
-
 	private final String NO_MSG = "noMsg";
 
 	private final String ERRORMSG = "errorMsg";
@@ -77,7 +75,6 @@ public class SelectMain extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding(ENCODE_UTF8);
 		List<ProductJB> proList = new ArrayList<ProductJB>();
 		String hidden = request.getParameter(HIDDEN);
 		ProductJB jb = null;

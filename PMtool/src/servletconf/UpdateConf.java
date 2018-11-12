@@ -36,7 +36,7 @@ public class UpdateConf extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+
 		String action = request.getParameter("action");
 		HttpSession session = request.getSession();
 		Decision decision = new Decision();

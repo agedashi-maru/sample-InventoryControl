@@ -21,8 +21,6 @@ public class Login extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private final String ENCODE_UTF8 = "UTF-8";
-
 	private final String USER_ID = "userid";
 
 	private final String PASS = "pass";
@@ -47,7 +45,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding(ENCODE_UTF8);
+
 		String userid = request.getParameter(USER_ID);
 		String pass = request.getParameter(PASS);
 		Account user = new Account(userid,pass);
@@ -64,8 +62,6 @@ public class Login extends HttpServlet {
 		}else {
 			response.sendRedirect("/PMtool/Logfail");
 		}
-
-
 
 	}
 

@@ -40,7 +40,6 @@ public class DeleteConf extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 		Decision decision = new Decision();
 		ProductJB deleteJB;

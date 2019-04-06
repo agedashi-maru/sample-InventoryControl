@@ -1,12 +1,7 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c_" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%
-	String insMsg = (String) request.getAttribute("insMsg");
-%>
-<%
-	String dupMsg = (String) request.getAttribute("dupMsg");
-%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -72,21 +67,12 @@
 			</p>
 			<input type="hidden" name="hidden" value="done">
 		</form>
-		<%
-			if (dupMsg != null) {
-		%>
-		<%=dupMsg%>
-		<%
-			}
-		%>
-		<%
-			if (insMsg != null) {
-		%>
-		<%=insMsg%>
-		<%
-			}
-		%>
-
+		<c_:if test="${!empty dupMsg}">
+			<c_:out value="${dupMsg}" />
+		</c_:if>
+		<c_:if test="${!empty insMsg}">
+			<c_:out value="${insMsg}" />
+		</c_:if>
 	</div>
 	<p class="menu">
 		<a href="/PMtool/log/returnMenu">メニューへ</a>

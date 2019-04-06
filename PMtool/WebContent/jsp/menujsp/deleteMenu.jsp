@@ -1,14 +1,7 @@
-<%@page import="model.ProductJB"%>
-<%@page import="java.util.List"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c_" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%
-	List<ProductJB> deleteList = (List<ProductJB>) request.getAttribute("deleteList");
-%>
-<%
-	String delMsg = (String) request.getAttribute("delMsg");
-%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -54,17 +47,11 @@
 				</p>
 				<input type="hidden" name="action" value="done2">
 			</form>
-			<%
-				if (delMsg != null) {
-			%>
-			<%=delMsg%>
-			<%
-				}
-			%>
-
+			<c_:if test="${!empty delMsg}">
+				<c_:out value="${delMsg}" />
+			</c_:if>
 		</div>
-		<br>
-		<br>
+		<br> <br>
 		<div class="right">
 			<form>
 				<table class="scroll">
@@ -99,25 +86,17 @@
 						</tr>
 					</thead>
 					<tbody class="scrollBody">
-						<%
-							if (deleteList != null) {
-						%>
-						<%
-							for (ProductJB jb : deleteList) {
-						%>
-						<tr>
-							<td class="type1"><%=jb.getId()%></td>
-							<td class="type2"><%=jb.getItem()%></td>
-							<td class="type3"><%=jb.getKind()%></td>
-							<td class="type4"><%=jb.getGroup()%></td>
-							<td class="type5"><%=jb.getStock()%></td>
-						</tr>
-						<%
-							}
-						%>
-						<%
-							}
-						%>
+						<c_:if test="${!empty deleteList}">
+							<c_:forEach var="deleteItem" items="${deleteList}">
+								<tr>
+									<td class="type1"><c_:out value="${deleteItem.id}" /></td>
+									<td class="type2"><c_:out value="${deleteItem.item}" /></td>
+									<td class="type3"><c_:out value="${deleteItem.kind}" /></td>
+									<td class="type4"><c_:out value="${deleteItem.group}" /></td>
+									<td class="type5"><c_:out value="${deleteItem.stock}" /></td>
+								</tr>
+							</c_:forEach>
+						</c_:if>
 					</tbody>
 				</table>
 				<p>

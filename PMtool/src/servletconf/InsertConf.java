@@ -48,10 +48,10 @@ public class InsertConf extends HttpServlet {
 		ProductJB jb = null;
 		List<ProductJB> insertjbList = new ArrayList<ProductJB>();
 		List<ProductJB> empList = new ArrayList<ProductJB>();
+		RequestDispatcher dispatcher = null;
 
 		if (hidden == null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/insertMenu.jsp");
-			dispatcher.forward(request, response);
+			dispatcher = request.getRequestDispatcher("/jsp/menujsp/insertMenu.jsp");
 
 		} else if (hidden.equals("done")) {
 			for (int i = 1; i <= 5; i++) {
@@ -116,22 +116,22 @@ public class InsertConf extends HttpServlet {
 			if (flag) {
 				String dupMsg = "※商品名が重複しているか、既に登録されています";
 				request.setAttribute("dupMsg", dupMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/insertMenu.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/menujsp/insertMenu.jsp");
+
 			}else if (insertjbList.size() != 0) {
 				HttpSession session = request.getSession();
 				session.setAttribute("insertjbList", insertjbList);
 
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/confjsp/confInsert.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/confjsp/confInsert.jsp");
+
 			} else {
 				String insMsg = "※項目を正しく入力してください";
 				request.setAttribute("insMsg", insMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/insertMenu.jsp");
-				dispatcher.forward(request, response);
-			}
+				dispatcher = request.getRequestDispatcher("/jsp/menujsp/insertMenu.jsp");
 
+			}
 		}
+		dispatcher.forward(request, response);
 	}
 
 	/**

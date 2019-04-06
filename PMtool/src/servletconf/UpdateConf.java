@@ -42,10 +42,10 @@ public class UpdateConf extends HttpServlet {
 		Decision decision = new Decision();
 		ProductJB updateJB;
 		List<ProductJB> empList = new ArrayList<ProductJB>();
+		RequestDispatcher dispatcher = null;
 
 		if (action == null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
-			dispatcher.forward(request, response);
+			dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
 
 		} else if (action.equals("done1")) {
 			List<ProductJB> updateList = new ArrayList<ProductJB>();
@@ -81,8 +81,7 @@ public class UpdateConf extends HttpServlet {
 
 			request.setAttribute("updateList", updateList);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
-			dispatcher.forward(request, response);
+			dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
 
 		} else if (action.equals("done2")) {
 			List<ProductJB> updateList = new ArrayList<ProductJB>();
@@ -153,25 +152,25 @@ public class UpdateConf extends HttpServlet {
 						checkHash.add(str);
 					}
 				}
-
 			}
 
 			if (flag) {
 				String dupMsg = "※商品名が重複しているか、既に登録されています";
 				request.setAttribute("dupMsg", dupMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
+
 			} else if (updateList.size() != 0) {
 				session.setAttribute("updateList", updateList);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/confjsp/confUpdate.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/confjsp/confUpdate.jsp");
+
 			} else {
 				String upMsg = "※項目を正しく入力してください";
 				request.setAttribute("upMsg", upMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
+
 			}
 		}
+		dispatcher.forward(request, response);
 	}
 
 	/**

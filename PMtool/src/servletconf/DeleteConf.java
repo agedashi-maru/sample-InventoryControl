@@ -45,10 +45,10 @@ public class DeleteConf extends HttpServlet {
 		ProductJB deleteJB;
 		SelectLogic selectLogic = new SelectLogic();
 		HttpSession session = request.getSession();
+		RequestDispatcher dispatcher = null;
 
 		if (action == null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
-			dispatcher.forward(request, response);
+			dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
 
 		} else if (action.equals("done1")) {
 			List<ProductJB> deleteList = new ArrayList<ProductJB>();
@@ -86,11 +86,9 @@ public class DeleteConf extends HttpServlet {
 				deleteList = selectLogic.executeSomeMatch(deleteJB);
 
 			}
-
 			request.setAttribute("deleteList", deleteList);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
-			dispatcher.forward(request, response);
+			dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
 
 		} else if (action.equals("done2")) {
 			List<ProductJB> idList = new ArrayList<ProductJB>();
@@ -119,16 +117,15 @@ public class DeleteConf extends HttpServlet {
 			if (deleteIdList.size() != 0) {
 				deleteIdList = selectLogic.executeSelectById(deleteIdList);
 				session.setAttribute("deleteIdList", deleteIdList);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/confjsp/confDelete.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/confjsp/confDelete.jsp");
 
 			}else{
 				request.setAttribute("delMsg", DELMSG);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
 
 			}
 		}
+		dispatcher.forward(request, response);
 	}
 
 	/**

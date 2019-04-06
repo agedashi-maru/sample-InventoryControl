@@ -57,13 +57,14 @@ public class InOutConf extends HttpServlet {
 		List<ProductJB> inOutJBList = new ArrayList<ProductJB>();
 		List<History> historyList = new ArrayList<History>();
 		List<String> strout = new ArrayList<String>();
+		RequestDispatcher dispatcher = null;
 		String inout = request.getParameter("action");
 		if (inout.equals("in")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockin.jsp");
-			dispatcher.forward(request, response);
+			dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockin.jsp");
+
 		} else if(inout.equals("out")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockout.jsp");
-			dispatcher.forward(request, response);
+			dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockout.jsp");
+
 		}else if (inout.equals("stockin")) {
 
 			String firstId;
@@ -128,19 +129,19 @@ public class InOutConf extends HttpServlet {
 			if (flag) {
 				String dupMsg = "※商品IDが重複しています";
 				request.setAttribute("dupMsg", dupMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockin.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockin.jsp");
+
 			} else if (historyList.size() != 0) {
 				HttpSession session = request.getSession();
 				session.setAttribute("inOutJBList", inOutJBList);
 				session.setAttribute("historyList", historyList);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/confInOutjsp/confIn.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/confInOutjsp/confIn.jsp");
+
 			}else {
 				String msg = "※項目を正しく入力してください";
 				request.setAttribute("msg", msg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockin.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockin.jsp");
+
 			}
 
 		}else if (inout.equals("stockout")) {
@@ -213,22 +214,21 @@ public class InOutConf extends HttpServlet {
 			if (flag) {
 				String dupMsg = "※商品IDが重複しています";
 				request.setAttribute("dupMsg", dupMsg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockout.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockout.jsp");
+
 			} else if (historyList.size() != 0) {
 				HttpSession session = request.getSession();
 				session.setAttribute("inOutJBList", inOutJBList);
 				session.setAttribute("historyList", historyList);
 				request.setAttribute("strout", strout);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/confInOutjsp/confOut.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/confInOutjsp/confOut.jsp");
+
 			}else{
 				String msg = "※項目を正しく入力してください";
 				request.setAttribute("msg", msg);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockout.jsp");
-				dispatcher.forward(request, response);
-			}
+				dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockout.jsp");
 
+			}
 		}else{
 
 			String firstId = request.getParameter("inoutid");
@@ -264,14 +264,14 @@ public class InOutConf extends HttpServlet {
 			session.setAttribute("productList", productList);
 
 			if (inout.equals("inout1")) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockin.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockin.jsp");
+
 			}else if(inout.equals("inout2")){
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockout.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockout.jsp");
+
 			}
 		}
-
+		dispatcher.forward(request, response);
 	}
 
 	/**

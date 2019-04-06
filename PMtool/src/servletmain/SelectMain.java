@@ -81,10 +81,10 @@ public class SelectMain extends HttpServlet {
 		Decision decision = new Decision();
 		SelectLogic sLogic = new SelectLogic();
 		HttpSession session = request.getSession();
+		RequestDispatcher dispatcher = null;
 
 		if (hidden == null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/selectMenu.jsp");
-			dispatcher.forward(request, response);
+			dispatcher = request.getRequestDispatcher("/jsp/menujsp/selectMenu.jsp");
 
 		} else if (hidden.equals(DONE)) {
 
@@ -129,13 +129,10 @@ public class SelectMain extends HttpServlet {
 					}
 					session.setAttribute(PRO_LIST, proList);
 				}
-
 			}
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/selectMenu.jsp");
-			dispatcher.forward(request, response);
+			dispatcher = request.getRequestDispatcher("/jsp/menujsp/selectMenu.jsp");
 		}
-
+		dispatcher.forward(request, response);
 	}
 
 	/**

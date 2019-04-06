@@ -60,14 +60,14 @@ public class UpdateMain extends HttpServlet {
 		List<History> histories;
 		UpdateLogic uLogic = new UpdateLogic();
 		String action = request.getParameter(ACTION);
+		RequestDispatcher dispatcher = null;
 
 		if (action.equals(UP_1)) {
 			empList = (List<ProductJB>) session.getAttribute(UPDATE_LIST);
 			Integer count = uLogic.executeUpdate(empList);
 			session.setAttribute(COUNT, count);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/resultjsp/resUpdate.jsp");
-			dispatcher.forward(request, response);
+			dispatcher = request.getRequestDispatcher("/jsp/resultjsp/resUpdate.jsp");
 
 		} else {
 			stockList = new ArrayList<ProductJB>();
@@ -80,17 +80,14 @@ public class UpdateMain extends HttpServlet {
 			request.setAttribute(COUNT, count);
 
 			if (action.equals(UP_2)) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/resInOutjsp/resIn.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/resInOutjsp/resIn.jsp");
 
 			} else if(action.equals(UP_3)){
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/resInOutjsp/resOut.jsp");
-				dispatcher.forward(request, response);
+				dispatcher = request.getRequestDispatcher("/jsp/resInOutjsp/resOut.jsp");
 
 			}
-
 		}
-
+		dispatcher.forward(request, response);
 	}
 
 	/**

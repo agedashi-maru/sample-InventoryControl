@@ -56,8 +56,8 @@ public class UpdateMain extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		List<ProductJB> empList = new ArrayList<ProductJB>();
-		List<ProductJB> stockList;
-		List<History> histories;
+		List<ProductJB> stockList = new ArrayList<ProductJB>();;
+		List<History> histories = new ArrayList<History>();;
 		UpdateLogic uLogic = new UpdateLogic();
 		String action = request.getParameter(ACTION);
 		RequestDispatcher dispatcher = null;
@@ -70,10 +70,7 @@ public class UpdateMain extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("/jsp/resultjsp/resUpdate.jsp");
 
 		} else {
-			stockList = new ArrayList<ProductJB>();
 			stockList = (List<ProductJB>) session.getAttribute(INOUT_JBLIST);
-
-			histories = new ArrayList<History>();
 			histories = (List<History>) session.getAttribute(HISTORY_LIST);
 
 			Integer count = uLogic.stockInOut(stockList, histories);

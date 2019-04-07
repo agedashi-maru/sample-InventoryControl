@@ -17,8 +17,8 @@
 		<div class="busi">
 			<h2>業務メニュー</h2>
 			<ul>
-				<li><a href="/PMtool/log/InOutConf?action=in">入庫</a></li>
-				<li><a href="/PMtool/log/InOutConf?action=out">出庫</a></li>
+				<li><a href="/PMtool/ReceiveInfo">入庫</a></li>
+				<li><a href="/PMtool/ShippingInfo">出庫</a></li>
 				<li><a href="/PMtool/log/SelectMain">照会</a></li>
 			</ul>
 		</div>

@@ -59,13 +59,8 @@ public class InOutConf extends HttpServlet {
 		List<String> strout = new ArrayList<String>();
 		RequestDispatcher dispatcher = null;
 		String inout = request.getParameter("action");
-		if (inout.equals("in")) {
-			dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockin.jsp");
 
-		} else if(inout.equals("out")) {
-			dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockout.jsp");
-
-		}else if (inout.equals("stockin")) {
+		if (inout.equals("stockin")) {
 
 			String firstId;
 			String firstcount;

@@ -1,18 +1,11 @@
-<%@page import="model.ProductJB"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%
-	List<ProductJB> deleteIdList = (List<ProductJB>) session.getAttribute("deleteIdList");
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c_" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/all.css" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/conf.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/conf.css" type="text/css">
 <title>削除確認</title>
 </head>
 <body>
@@ -27,19 +20,15 @@
 					<th>グループ</th>
 					<th>在庫数</th>
 				</tr>
-				<%
-					for (ProductJB jb : deleteIdList) {
-				%>
-				<tr>
-					<td><%=jb.getId()%></td>
-					<td><%=jb.getItem()%></td>
-					<td><%=jb.getKind()%></td>
-					<td><%=jb.getGroup()%></td>
-					<td><%=jb.getStock()%></td>
-				</tr>
-				<%
-					}
-				%>
+				<c_:forEach var="deleteIdItem" items="${deleteIdList}" varStatus="status">
+					<tr>
+						<td><c_:out value="${deleteIdItem.id}" /></td>
+						<td><c_:out value="${deleteIdItem.item}" /></td>
+						<td><c_:out value="${deleteIdItem.kind}" /></td>
+						<td><c_:out value="${deleteIdItem.group}" /></td>
+						<td><c_:out value="${deleteIdItem.stock}" /></td>
+					</tr>
+				</c_:forEach>
 			</table>
 			<p>
 				<a class="subm" href="/PMtool/log/DeleteMain">実行</a>

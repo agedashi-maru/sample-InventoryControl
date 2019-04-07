@@ -1,28 +1,11 @@
-<%@page import="model.History"%>
-<%@page import="model.ProductJB"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%
-	List<ProductJB> inOutJBList = (List<ProductJB>) session.getAttribute("inOutJBList");
-%>
-<%
-	List<History> historyList = (List<History>) session.getAttribute("historyList");
-%>
-<%
-	List<String> strout = (List<String>) request.getAttribute("strout");
-%>
-<%
-	int counter = 0;
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c_" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/all.css" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/conf.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/conf.css" type="text/css">
 <title>出庫確認</title>
 </head>
 <body>
@@ -35,34 +18,19 @@
 					<th>商品名</th>
 					<th>出庫数</th>
 				</tr>
-				<%
-					for (ProductJB jb : inOutJBList) {
-				%>
+				<c_:forEach var="inOutJBItem" items="${inOutJBList}" varStatus="status">
 				<tr>
-					<td><%=jb.getId()%></td>
-					<td><%=jb.getItem()%></td>
-					<td><%=historyList.get(counter).getNum()%></td>
+					<td><c_:out value="${inOutJBItem.id}" /></td>
+					<td><c_:out value="${inOutJBItem.item}" /></td>
+					<td><c_:out value="${historyList.get(status.index).getNum()}" /></td>
 				</tr>
-				<%
-					counter++;
-				%>
-				<%
-					}
-				%>
+				</c_:forEach>
 			</table>
-			<%
-				if (strout.size() != 0) {
-			%>
-			<%
-				for (String msg : strout) {
-			%>
-			<p><%=msg%></p>
-			<%
-				}
-			%>
-			<%
-				}
-			%>
+				<c_:if test="${strout.size() != 0}">
+					<c_:forEach var="msg" items="${strout}" varStatus="status">
+						<p><c_:out value="${msg}" /></p>
+					</c_:forEach>
+				</c_:if>
 			<p>
 				<a href="/PMtool/log/UpdateMain?action=up3"><input class="subm"
 					type="button" value="実行"></a>

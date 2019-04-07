@@ -1,25 +1,11 @@
-<%@page import="model.History"%>
-<%@page import="model.ProductJB"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%
-	List<ProductJB> inOutJBList = (List<ProductJB>) session.getAttribute("inOutJBList");
-%>
-<%
-	List<History> historyList = (List<History>) session.getAttribute("historyList");
-%>
-<%
-	int counter = 0;
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c_" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/all.css" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/conf.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/conf.css" type="text/css">
 <title>入庫確認</title>
 </head>
 <body>
@@ -32,20 +18,13 @@
 					<th>商品名</th>
 					<th>入庫数</th>
 				</tr>
-				<%
-					for (ProductJB jb : inOutJBList) {
-				%>
-				<tr>
-					<td><%=jb.getId()%></td>
-					<td><%=jb.getItem()%></td>
-					<td><%=historyList.get(counter).getNum()%></td>
-				</tr>
-				<%
-					counter++;
-				%>
-				<%
-					}
-				%>
+					<c_:forEach var="inOutJBItem" items="${inOutJBList}" varStatus="status">
+						<tr>
+							<td><c_:out value="${inOutJBItem.id}" /></td>
+							<td><c_:out value="${inOutJBItem.item}" /></td>
+							<td><c_:out value="${historyList.get(status.index).getNum()}" /></td>
+						</tr>
+					</c_:forEach>
 			</table>
 			<p>
 				<a href="/PMtool/log/UpdateMain?action=up2"><input class="subm"

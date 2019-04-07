@@ -80,7 +80,6 @@ public class UpdateDao {
 			throw new DaoExce("[UpdateDao : updateStockInOut]異常", e);
 		}
 
-
 		return count;
 	}
 

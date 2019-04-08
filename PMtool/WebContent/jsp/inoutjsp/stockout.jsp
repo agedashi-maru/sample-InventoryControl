@@ -13,7 +13,7 @@
 	<div class="main">
 		<div class="left">
 			<h2>商品IDと出庫数を入力してください</h2>
-			<form action="/PMtool/log/InOutConf">
+			<form action="/PMtool/ShippingConf">
 				<table>
 					<tr>
 						<td class="id">商品ID</td>
@@ -49,7 +49,6 @@
 				<p>
 					<input class="subm" type="submit" value="送信">
 				</p>
-				<input type="hidden" name="action" value="stockout">
 			</form>
 			<c_:if test="${!empty dupMsg }">
 				<c_:out value="${dupMsg}" />
@@ -61,7 +60,7 @@
 		<br>
 		<br>
 		<div class="right">
-			<form action="/PMtool/log/InOutConf">
+			<form action="/PMtool/StockReference">
 				<table class="scroll">
 					<tr>
 						<th class="type1">商品ID</th>

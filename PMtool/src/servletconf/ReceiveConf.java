@@ -30,17 +30,19 @@ public class ReceiveConf extends HttpServlet {
 
 	private final String ZERO = "0";
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ReceiveConf() {
-        super();
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ReceiveConf() {
+		super();
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		ProductJB inOutJB = null;
 		History history = null;
 		SelectLogic selectLogic = new SelectLogic();
@@ -64,7 +66,7 @@ public class ReceiveConf extends HttpServlet {
 			}
 
 			if (!(decision.isInt(firstcount)) || firstcount.equals("")) {
-				firstcount= ZERO;
+				firstcount = ZERO;
 			}
 			int count = Integer.parseInt(firstcount);
 			if (count < 0) {
@@ -77,15 +79,15 @@ public class ReceiveConf extends HttpServlet {
 				for (ProductJB productJB : productList) {
 					if (productJB.getId() == id) {
 						int stock = productJB.getStock() + count;
-						inOutJB = new ProductJB(id,productJB.getItem(),stock);
-						history = new History(PUT_IN, count,id);
+						inOutJB = new ProductJB(id, productJB.getItem(), stock);
+						history = new History(PUT_IN, count, id);
 						break;
 					}
 
 				}
 				inOutJBList.add(inOutJB);
 				historyList.add(history);
-		}
+			}
 
 		}
 
@@ -119,7 +121,7 @@ public class ReceiveConf extends HttpServlet {
 			session.setAttribute("historyList", historyList);
 			dispatcher = request.getRequestDispatcher("/jsp/confInOutjsp/confIn.jsp");
 
-		}else {
+		} else {
 			String msg = "※項目を正しく入力してください";
 			request.setAttribute("msg", msg);
 			dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockin.jsp");
@@ -129,9 +131,11 @@ public class ReceiveConf extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

@@ -30,17 +30,19 @@ public class ShippingConf extends HttpServlet {
 
 	private final String ZERO = "0";
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShippingConf() {
-        super();
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ShippingConf() {
+		super();
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String firstId;
 		String firstcount;
 		int stock = 0;
@@ -81,8 +83,8 @@ public class ShippingConf extends HttpServlet {
 				for (ProductJB productJB : productList) {
 					if (productJB.getId() == id) {
 						stock = productJB.getStock() - count;
-						inOutJB = new ProductJB(id,productJB.getItem(),stock);
-						history = new History(PUT_OUT, count,id);
+						inOutJB = new ProductJB(id, productJB.getItem(), stock);
+						history = new History(PUT_OUT, count, id);
 						break;
 					}
 				}
@@ -93,7 +95,7 @@ public class ShippingConf extends HttpServlet {
 				}
 				inOutJBList.add(inOutJB);
 				historyList.add(history);
-		}
+			}
 
 		}
 
@@ -128,7 +130,7 @@ public class ShippingConf extends HttpServlet {
 			request.setAttribute("strout", strout);
 			dispatcher = request.getRequestDispatcher("/jsp/confInOutjsp/confOut.jsp");
 
-		}else{
+		} else {
 			String msg = "※項目を正しく入力してください";
 			request.setAttribute("msg", msg);
 			dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockout.jsp");
@@ -138,9 +140,11 @@ public class ShippingConf extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

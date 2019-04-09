@@ -1,28 +1,12 @@
-<%@page import="model.ProductJB"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%
-	List<ProductJB> updateList = (List<ProductJB>) request.getAttribute("updateList");
-%>
-<%
-	String upMsg = (String) request.getAttribute("upMsg");
-%>
-<%
-	String dupMsg = (String) request.getAttribute("dupMsg");
-%>
+<%@ taglib prefix="c_" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/all.css" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/scrollbar.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/leftRight3.css"
-	type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/scrollbar.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/leftRight3.css" type="text/css">
 <title>登録内容の変更</title>
 </head>
 <body>
@@ -81,21 +65,12 @@
 				</p>
 				<input type="hidden" name="action" value="done2">
 			</form>
-			<%
-				if (dupMsg != null) {
-			%>
-			<%=dupMsg%>
-			<%
-				}
-			%>
-			<%
-				if (upMsg != null) {
-			%>
-			<%=upMsg%>
-			<%
-				}
-			%>
-
+			<c_:if test="${!empty dupMsg}">
+				<c_:out value="${dupMsg}" />
+			</c_:if>
+			<c_:if test="${!empty upMsg}">
+				<c_:out value="${upMsg}" />
+			</c_:if>
 		</div>
 		<br>
 		<div class="right">
@@ -133,27 +108,18 @@
 						</tr>
 					</thead>
 					<tbody class="scrollBody">
-						<%
-							if (updateList != null) {
-						%>
-						<%
-							for (ProductJB jb : updateList) {
-						%>
-						<tr>
-							<td class="type1"><%=jb.getId()%></td>
-							<td class="type2"><%=jb.getItem()%></td>
-							<td class="type3"><%=jb.getKind()%></td>
-							<td class="type4"><%=jb.getGroup()%></td>
-							<td class="type5"><%=jb.getStock()%></td>
-						</tr>
-						<%
-							}
-						%>
-						<%
-							}
-						%>
+						<c_:if test="${!empty updateList}">
+							<c_:forEach var="updateItem" items="${updateList}">
+								<tr>
+									<td class="type1"><c_:out value="${updateItem.id}" /></td>
+									<td class="type2"><c_:out value="${updateItem.item}" /></td>
+									<td class="type3"><c_:out value="${updateItem.kind}" /></td>
+									<td class="type4"><c_:out value="${updateItem.group}" /></td>
+									<td class="type5"><c_:out value="${updateItem.stock}" /></td>
+								</tr>
+							</c_:forEach>
+						</c_:if>
 					</tbody>
-
 				</table>
 				<p>
 					<input class="subm" type="submit" value="照会">

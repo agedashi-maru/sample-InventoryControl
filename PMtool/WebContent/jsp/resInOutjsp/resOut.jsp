@@ -1,9 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%
-	Integer count = (Integer) request.getAttribute("count");
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c_" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,7 +13,7 @@
 <body>
 	<div class="main">
 		<div class="conf">
-			<h1><%=count%>件の出庫処理を完了しました
+			<h1><c_:out value="${count}" />件の出庫処理を完了しました
 			</h1>
 			<p>
 				<a href="/PMtool/log/returnMenu" class="subm">メニューへ</a>

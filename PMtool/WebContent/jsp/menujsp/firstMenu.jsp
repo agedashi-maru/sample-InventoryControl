@@ -24,7 +24,7 @@
 		<div class="manage">
 			<h2>管理メニュー</h2>
 			<ul>
-				<li><a href="/PMtool/log/InsertConf">新規商品登録</a></li>
+				<li><a href="/PMtool/InsertInfo">新規商品登録</a></li>
 				<li><a href="/PMtool/log/UpdateConf">登録内容の変更</a></li>
 				<li><a href="/PMtool/log/DeleteConf">在庫データの削除</a></li>
 			</ul>

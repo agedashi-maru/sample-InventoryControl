@@ -38,11 +38,12 @@ public class InsertConf extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		String hidden = request.getParameter("hidden");
 		SelectLogic selectLogic = new SelectLogic();
 		Decision decision = new Decision();
 		ProductJB jb = null;
@@ -50,94 +51,92 @@ public class InsertConf extends HttpServlet {
 		List<ProductJB> empList = new ArrayList<ProductJB>();
 		RequestDispatcher dispatcher = null;
 
-		if (hidden == null) {
-			dispatcher = request.getRequestDispatcher("/jsp/menujsp/insertMenu.jsp");
+		for (int i = 1; i <= 5; i++) {
+			String item = request.getParameter("insertitem" + i);
+			if (item.length() == 0 || item == null) {
+				item = NONE_CORRESPOND;
+			}
+			String kind = request.getParameter("insertkind" + i);
+			if (kind.length() == 0 || kind == null) {
+				kind = NONE_CORRESPOND;
+			}
+			String group = request.getParameter("insertgroup" + i);
+			if (group.length() == 0 || group == null) {
+				group = NONE_CORRESPOND;
+			}
+			String firststock = request.getParameter("insertstock" + i);
 
-		} else if (hidden.equals("done")) {
-			for (int i = 1; i <= 5; i++) {
-				String item = request.getParameter("insertitem" + i);
-				if (item.length() == 0 || item == null) {
-					item = NONE_CORRESPOND;
-				}
-				String kind = request.getParameter("insertkind" + i);
-				if (kind.length() == 0 || kind == null) {
-					kind = NONE_CORRESPOND;
-				}
-				String group = request.getParameter("insertgroup" + i);
-				if (group.length() == 0 || group == null) {
-					group = NONE_CORRESPOND;
-				}
-				String firststock = request.getParameter("insertstock" + i);
-
-				if (firststock.length() == 0 || firststock == null || !(decision.isInt(firststock))) {
-					firststock = ZERO;
-				}
-				int stock = Integer.parseInt(firststock);
-				if (stock < 0) {
-					stock = 0;
-				}
-
-				if (item.equals(NONE_CORRESPOND) && kind.equals(NONE_CORRESPOND) && group.equals(NONE_CORRESPOND) && firststock.equals(ZERO)) {
-					continue;
-				}
-
-				jb = new ProductJB(item, kind, group, stock);
-				insertjbList.add(jb);
+			if (firststock.length() == 0 || firststock == null || !(decision.isInt(firststock))) {
+				firststock = ZERO;
+			}
+			int stock = Integer.parseInt(firststock);
+			if (stock < 0) {
+				stock = 0;
 			}
 
-			List<String> items = new ArrayList<String>();
-			boolean flag = false;
-			empList = selectLogic.executeFindAll();
-			for (ProductJB proJB : empList) {
-				for (int j = 0; j < insertjbList.size(); j++) {
-					if (proJB.getItem().equals(insertjbList.get(j).getItem())) {
-						flag = true;
-						break;
-					}
-				}
+			if (item.equals(NONE_CORRESPOND) && kind.equals(NONE_CORRESPOND) && group.equals(NONE_CORRESPOND)
+					&& firststock.equals(ZERO)) {
+				continue;
 			}
 
-			for (ProductJB prodJB : insertjbList) {
-				items.add(prodJB.getItem());
-			}
+			jb = new ProductJB(item, kind, group, stock);
+			insertjbList.add(jb);
+		}
 
-			Set<String> checkHash = new HashSet<String>();
-			for(String str : items) {
-				if(checkHash.contains(str)) {
-					// 重複があればtrueをセットし終了
+		List<String> items = new ArrayList<String>();
+		boolean flag = false;
+		empList = selectLogic.executeFindAll();
+		for (ProductJB proJB : empList) {
+			for (int j = 0; j < insertjbList.size(); j++) {
+				if (proJB.getItem().equals(insertjbList.get(j).getItem())) {
 					flag = true;
 					break;
-				} else {
-					// 重複しなければハッシュセットへ追加
-					checkHash.add(str);
 				}
 			}
+		}
 
-			if (flag) {
-				String dupMsg = "※商品名が重複しているか、既に登録されています";
-				request.setAttribute("dupMsg", dupMsg);
-				dispatcher = request.getRequestDispatcher("/jsp/menujsp/insertMenu.jsp");
+		for (ProductJB prodJB : insertjbList) {
+			items.add(prodJB.getItem());
+		}
 
-			}else if (insertjbList.size() != 0) {
-				HttpSession session = request.getSession();
-				session.setAttribute("insertjbList", insertjbList);
-
-				dispatcher = request.getRequestDispatcher("/jsp/confjsp/confInsert.jsp");
-
+		Set<String> checkHash = new HashSet<String>();
+		for (String str : items) {
+			if (checkHash.contains(str)) {
+				// 重複があればtrueをセットし終了
+				flag = true;
+				break;
 			} else {
-				String insMsg = "※項目を正しく入力してください";
-				request.setAttribute("insMsg", insMsg);
-				dispatcher = request.getRequestDispatcher("/jsp/menujsp/insertMenu.jsp");
-
+				// 重複しなければハッシュセットへ追加
+				checkHash.add(str);
 			}
+		}
+
+		if (flag) {
+			String dupMsg = "※商品名が重複しているか、既に登録されています";
+			request.setAttribute("dupMsg", dupMsg);
+			dispatcher = request.getRequestDispatcher("/jsp/menujsp/insertMenu.jsp");
+
+		} else if (insertjbList.size() != 0) {
+			HttpSession session = request.getSession();
+			session.setAttribute("insertjbList", insertjbList);
+
+			dispatcher = request.getRequestDispatcher("/jsp/confjsp/confInsert.jsp");
+
+		} else {
+			String insMsg = "※項目を正しく入力してください";
+			request.setAttribute("insMsg", insMsg);
+			dispatcher = request.getRequestDispatcher("/jsp/menujsp/insertMenu.jsp");
+
 		}
 		dispatcher.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 	}
 

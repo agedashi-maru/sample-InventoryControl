@@ -75,7 +75,7 @@
 		<br>
 		<div class="right">
 			<br>
-			<form>
+			<form action="/PMtool/StockReference">
 				<table class="scroll">
 					<tr>
 						<th class="type1">商品ID</th>
@@ -85,14 +85,14 @@
 						<th class="type5">在庫数</th>
 					</tr>
 					<tr>
-						<td class="type1"><input type="text" name="updateid" size="3"></td>
-						<td class="type2"><input type="text" name="updateitem"
+						<td class="type1"><input type="text" name="stockReferenceId" size="3"></td>
+						<td class="type2"><input type="text" name="stockReferenceItem"
 							size="15"></td>
-						<td class="type3"><input type="text" name="updatekind"
+						<td class="type3"><input type="text" name="stockReferenceKind"
 							size="10"></td>
-						<td class="type4"><input type="text" name="updategroup"
+						<td class="type4"><input type="text" name="stockReferenceGroup"
 							size="5"></td>
-						<td class="type5"><input type="text" name="updatestock"
+						<td class="type5"><input type="text" name="stockReferenceStock"
 							size="3"></td>
 					</tr>
 				</table>
@@ -108,14 +108,14 @@
 						</tr>
 					</thead>
 					<tbody class="scrollBody">
-						<c_:if test="${!empty updateList}">
-							<c_:forEach var="updateItem" items="${updateList}">
+						<c_:if test="${!empty stockReferenceList}">
+							<c_:forEach var="stockReference" items="${stockReferenceList}">
 								<tr>
-									<td class="type1"><c_:out value="${updateItem.id}" /></td>
-									<td class="type2"><c_:out value="${updateItem.item}" /></td>
-									<td class="type3"><c_:out value="${updateItem.kind}" /></td>
-									<td class="type4"><c_:out value="${updateItem.group}" /></td>
-									<td class="type5"><c_:out value="${updateItem.stock}" /></td>
+									<td class="type1"><c_:out value="${stockReference.id}" /></td>
+									<td class="type2"><c_:out value="${stockReference.item}" /></td>
+									<td class="type3"><c_:out value="${stockReference.kind}" /></td>
+									<td class="type4"><c_:out value="${stockReference.group}" /></td>
+									<td class="type5"><c_:out value="${stockReference.stock}" /></td>
 								</tr>
 							</c_:forEach>
 						</c_:if>
@@ -124,7 +124,7 @@
 				<p>
 					<input class="subm" type="submit" value="照会">
 				</p>
-				<input type="hidden" name="action" value="done1">
+				<input type="hidden" name="action" value="updateMenu">
 			</form>
 		</div>
 	</div>

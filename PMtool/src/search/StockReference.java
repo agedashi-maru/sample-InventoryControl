@@ -27,9 +27,16 @@ public class StockReference extends HttpServlet {
 
 	private final String ZERO = "0";
 
+	private final String NONE = "なし";
+
 	Decision decision = new Decision();
 
-	private final String NONE = "なし";
+	String returnViewName = null;
+
+	SelectLogic selectLogic = new SelectLogic();
+
+	List<ProductJB> stockReferenceList = new ArrayList<ProductJB>();
+
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,13 +49,13 @@ public class StockReference extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String firstId = request.getParameter("inoutid");
-		String firstStock = request.getParameter("inoutstock");
-		SelectLogic selectLogic = new SelectLogic();
-		List<ProductJB> productList = new ArrayList<ProductJB>();
-		ProductJB inOutJB = null;
-		RequestDispatcher dispatcher = null;
-		String inout = request.getParameter("action");
+
+		String firstId = request.getParameter("stockReferenceId");
+		String item = request.getParameter("stockReferenceItem");
+		String kind = request.getParameter("stockReferenceKind");
+		String group = request.getParameter("stockReferenceGroup");
+		String firstStock = request.getParameter("stockReferenceStock");
+		String returnViewKey = request.getParameter("action");
 
 		if (StringUtils.isEmpty(firstId) || !(decision.isInt(firstId))) {
 			firstId = ZERO;
@@ -58,34 +65,37 @@ public class StockReference extends HttpServlet {
 			id = 0;
 		}
 
-		String item = request.getParameter("inoutitem");
-		String kind = request.getParameter("inoutkind");
-		String group = request.getParameter("inoutgroup");
 		if (StringUtils.isEmpty(firstStock) || !(decision.isInt(firstStock))) {
 			firstStock = NONE;
 		}
-		selectLogic = new SelectLogic();
 
 		if (id==0 && StringUtils.isEmpty(item) && StringUtils.isEmpty(kind) && StringUtils.isEmpty(group) && firstStock.equals(NONE)) {
-			productList = selectLogic.executeFindAll();
+			stockReferenceList = selectLogic.executeFindAll();
 		}else if (firstStock.equals(NONE)) {
-			inOutJB = new ProductJB(id,item,kind,group);
-			productList = selectLogic.executeSomeMatch(inOutJB);
+			stockReferenceList = selectLogic.executeSomeMatch(new ProductJB(id,item,kind,group));
+
 		}else {
 			int stock = Integer.parseInt(firstStock);
-			inOutJB = new ProductJB(id,item,kind,group,stock);
-			productList = selectLogic.executeStockMatch(inOutJB);
+			stockReferenceList = selectLogic.executeStockMatch(new ProductJB(id,item,kind,group,stock));
+		}
+
+		if (returnViewKey.equals("stockin")) {
+			returnViewName = "/jsp/inoutjsp/stockin.jsp";
+
+		}else if(returnViewKey.equals("stockout")){
+			returnViewName = "/jsp/inoutjsp/stockout.jsp";
+
+		}else if(returnViewKey.equals("updateMenu")){
+			returnViewName = "/jsp/menujsp/updateMenu.jsp";
+
+		}else if(returnViewKey.equals("deleteMenu")){
+			returnViewName = "/jsp/menujsp/deleteMenu.jsp";
+
 		}
 		HttpSession session = request.getSession();
-		session.setAttribute("productList", productList);
+		session.setAttribute("stockReferenceList", stockReferenceList);
 
-		if (inout.equals("inout1")) {
-			dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockin.jsp");
-
-		}else if(inout.equals("inout2")){
-			dispatcher = request.getRequestDispatcher("/jsp/inoutjsp/stockout.jsp");
-
-		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher(returnViewName);
 		dispatcher.forward(request, response);
 	}
 

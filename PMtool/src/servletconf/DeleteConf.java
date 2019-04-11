@@ -26,7 +26,6 @@ public class DeleteConf extends HttpServlet {
 
 	private final String DELMSG = "※項目を正しく入力してください";
 
-	private final String NONE = "なし";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -48,46 +47,6 @@ public class DeleteConf extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 
 		if (action == null) {
-			dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
-
-		} else if (action.equals("done1")) {
-			List<ProductJB> deleteList = new ArrayList<ProductJB>();
-			String firstId = request.getParameter("deleteid");
-			String firststock = request.getParameter("deletestock");
-
-			if (firstId.equals("") || !(decision.isInt(firstId)) || firstId == null) {
-				firstId = "0";
-			}
-
-			int id = Integer.parseInt(firstId);
-			if (id < 0) {
-				id = 0;
-			}
-
-			String item = request.getParameter("deleteitem");
-			String kind = request.getParameter("deletekind");
-			String group = request.getParameter("deletegroup");
-
-			if (firststock.equals("") || !(decision.isInt(firststock)) || firststock == null) {
-				firststock = NONE;
-				deleteJB = new ProductJB(id, item, kind, group);
-
-			} else {
-				int stock = Integer.parseInt(firststock);
-				deleteJB = new ProductJB(id, item, kind, group, stock);
-
-			}
-
-			if (id == 0 && (item == null || item.length() == 0) && (kind == null || kind.length() == 0)
-					&& (group == null || group.length() == 0) && firststock.equals(NONE)) {
-				deleteList = selectLogic.executeFindAll();
-
-			} else {
-				deleteList = selectLogic.executeSomeMatch(deleteJB);
-
-			}
-			request.setAttribute("deleteList", deleteList);
-
 			dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
 
 		} else if (action.equals("done2")) {

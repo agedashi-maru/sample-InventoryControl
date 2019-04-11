@@ -38,6 +38,7 @@ public class returnMenu extends HttpServlet {
 		session.removeAttribute("inOutJBList");
 		session.removeAttribute("historyList");
 		session.removeAttribute("productList");
+		session.removeAttribute("stockReferenceList");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/firstMenu.jsp");
 		dispatcher.forward(request, response);
 	}

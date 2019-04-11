@@ -40,47 +40,10 @@ public class UpdateConf extends HttpServlet {
 		String action = request.getParameter("action");
 		HttpSession session = request.getSession();
 		Decision decision = new Decision();
-		ProductJB updateJB;
 		List<ProductJB> empList = new ArrayList<ProductJB>();
 		RequestDispatcher dispatcher = null;
 
 		if (action == null) {
-			dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
-
-		} else if (action.equals("done1")) {
-			List<ProductJB> updateList = new ArrayList<ProductJB>();
-			String firstId = request.getParameter("updateid");
-			String firstStock = request.getParameter("updatestock");
-
-			if (firstId.equals("") || !(decision.isInt(firstId))) {
-				firstId = "0";
-			}
-			int id = Integer.parseInt(firstId);
-			if (id < 0) {
-				id = 0;
-			}
-
-			String item = request.getParameter("updateitem");
-			String kind = request.getParameter("updatekind");
-			String group = request.getParameter("updategroup");
-			if (firstStock.equals("") || !(decision.isInt(firstStock))) {
-				firstStock = "なし";
-				updateJB = new ProductJB(id, item, kind, group);
-			} else {
-				int stock = Integer.parseInt(firstStock);
-				updateJB = new ProductJB(id, item, kind, group, stock);
-			}
-
-			SelectLogic selectLogic = new SelectLogic();
-			if (id == 0 && (item == null || item.length() == 0) && (kind == null || kind.length() == 0)
-					&& (group == null || group.length() == 0) && firstStock.equals("なし")) {
-				updateList = selectLogic.executeFindAll();
-			} else {
-				updateList = selectLogic.executeSomeMatch(updateJB);
-			}
-
-			request.setAttribute("updateList", updateList);
-
 			dispatcher = request.getRequestDispatcher("/jsp/menujsp/updateMenu.jsp");
 
 		} else if (action.equals("done2")) {

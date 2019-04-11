@@ -70,14 +70,14 @@
 						<th class="type5">在庫数</th>
 					</tr>
 					<tr>
-						<td class="type1"><input type="text" name="inoutid" size="3"></td>
-						<td class="type2"><input type="text" name="inoutitem"
+						<td class="type1"><input type="text" name="stockReferenceId" size="3"></td>
+						<td class="type2"><input type="text" name="stockReferenceItem"
 							size="15"></td>
-						<td class="type3"><input type="text" name="inoutkind"
+						<td class="type3"><input type="text" name="stockReferenceKind"
 							size="10"></td>
-						<td class="type4"><input type="text" name="inoutgroup"
+						<td class="type4"><input type="text" name="stockReferenceGroup"
 							size="5"></td>
-						<td class="type5"><input type="text" name="inoutstock"
+						<td class="type5"><input type="text" name="stockReferenceStock"
 							size="3"></td>
 					</tr>
 				</table>
@@ -93,14 +93,14 @@
 						</tr>
 					</thead>
 					<tbody class="scrollBody">
-					<c_:if test="${!empty productList }">
-						<c_:forEach var="productItem" items="${productList}" varStatus="status">
+					<c_:if test="${!empty stockReferenceList }">
+						<c_:forEach var="stockReference" items="${stockReferenceList}" varStatus="status">
 							<tr>
-								<td class="type1"><c_:out value="${productItem.id}" /></td>
-								<td class="type2"><c_:out value="${productItem.item}" /></td>
-								<td class="type3"><c_:out value="${productItem.kind}" /></td>
-								<td class="type4"><c_:out value="${productItem.group}" /></td>
-								<td class="type5"><c_:out value="${productItem.stock}" /></td>
+								<td class="type1"><c_:out value="${stockReference.id}" /></td>
+								<td class="type2"><c_:out value="${stockReference.item}" /></td>
+								<td class="type3"><c_:out value="${stockReference.kind}" /></td>
+								<td class="type4"><c_:out value="${stockReference.group}" /></td>
+								<td class="type5"><c_:out value="${stockReference.stock}" /></td>
 							</tr>
 						</c_:forEach>
 					</c_:if>
@@ -109,7 +109,7 @@
 				<p>
 					<input class="subm" type="submit" value="照会">
 				</p>
-				<input type="hidden" name="action" value="inout1">
+				<input type="hidden" name="action" value="stockin">
 			</form>
 		</div>
 	</div>

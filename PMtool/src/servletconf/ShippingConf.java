@@ -30,6 +30,20 @@ public class ShippingConf extends HttpServlet {
 
 	private final String ZERO = "0";
 
+	String firstId = null;
+	String firstcount = null;
+	int stock = 0;
+	String ms = null;
+	ProductJB inOutJB = null;
+	History history = null;
+	SelectLogic selectLogic = new SelectLogic();
+	Decision decision = new Decision();
+	List<ProductJB> productList = new ArrayList<ProductJB>();
+	List<ProductJB> inOutJBList = new ArrayList<ProductJB>();
+	List<History> historyList = new ArrayList<History>();
+	List<String> strout = new ArrayList<String>();
+	RequestDispatcher dispatcher = null;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -43,19 +57,6 @@ public class ShippingConf extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String firstId;
-		String firstcount;
-		int stock = 0;
-		String ms = null;
-		ProductJB inOutJB = null;
-		History history = null;
-		SelectLogic selectLogic = new SelectLogic();
-		Decision decision = new Decision();
-		List<ProductJB> productList = new ArrayList<ProductJB>();
-		List<ProductJB> inOutJBList = new ArrayList<ProductJB>();
-		List<History> historyList = new ArrayList<History>();
-		List<String> strout = new ArrayList<String>();
-		RequestDispatcher dispatcher = null;
 
 		for (int i = 1; i <= 5; i++) {
 			firstId = request.getParameter("stockid" + i);

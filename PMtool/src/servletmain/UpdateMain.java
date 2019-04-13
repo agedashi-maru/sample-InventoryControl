@@ -40,6 +40,12 @@ public class UpdateMain extends HttpServlet {
 
 	private final String HISTORY_LIST = "historyList";
 
+	List<ProductJB> empList = new ArrayList<ProductJB>();
+	List<ProductJB> stockList = new ArrayList<ProductJB>();;
+	List<History> histories = new ArrayList<History>();;
+	UpdateLogic uLogic = new UpdateLogic();
+	RequestDispatcher dispatcher = null;
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -55,12 +61,7 @@ public class UpdateMain extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		List<ProductJB> empList = new ArrayList<ProductJB>();
-		List<ProductJB> stockList = new ArrayList<ProductJB>();;
-		List<History> histories = new ArrayList<History>();;
-		UpdateLogic uLogic = new UpdateLogic();
 		String action = request.getParameter(ACTION);
-		RequestDispatcher dispatcher = null;
 
 		if (action.equals(UP_1)) {
 			empList = (List<ProductJB>) session.getAttribute(UPDATE_LIST);

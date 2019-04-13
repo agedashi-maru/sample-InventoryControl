@@ -27,6 +27,8 @@ public class InsertMain extends HttpServlet {
 
 	private final String COUNT = "count";
 
+	List<ProductJB> empList = new ArrayList<ProductJB>();
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,7 +42,6 @@ public class InsertMain extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		List<ProductJB> empList = new ArrayList<ProductJB>();
 		empList = (List<ProductJB>)session.getAttribute(INSERT_JBLIST);
 		InsertLogic iLogic = new InsertLogic();
 		Integer count = iLogic.executeInsert(empList);

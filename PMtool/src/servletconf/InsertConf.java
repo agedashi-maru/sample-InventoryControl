@@ -30,6 +30,13 @@ public class InsertConf extends HttpServlet {
 
 	private final String ZERO = "0";
 
+	SelectLogic selectLogic = new SelectLogic();
+	Decision decision = new Decision();
+	ProductJB jb = null;
+	List<ProductJB> insertjbList = new ArrayList<ProductJB>();
+	List<ProductJB> empList = new ArrayList<ProductJB>();
+	RequestDispatcher dispatcher = null;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -43,13 +50,6 @@ public class InsertConf extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		SelectLogic selectLogic = new SelectLogic();
-		Decision decision = new Decision();
-		ProductJB jb = null;
-		List<ProductJB> insertjbList = new ArrayList<ProductJB>();
-		List<ProductJB> empList = new ArrayList<ProductJB>();
-		RequestDispatcher dispatcher = null;
 
 		for (int i = 1; i <= 5; i++) {
 			String item = request.getParameter("insertitem" + i);
@@ -137,7 +137,7 @@ public class InsertConf extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		doGet(request, response);
 	}
 
 }

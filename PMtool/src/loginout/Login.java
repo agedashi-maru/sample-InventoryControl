@@ -27,6 +27,8 @@ public class Login extends HttpServlet {
 
 	private final String USER = "user";
 
+	LoginLogic logic = new LoginLogic();
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -49,7 +51,6 @@ public class Login extends HttpServlet {
 		String userid = request.getParameter(USER_ID);
 		String pass = request.getParameter(PASS);
 		Account user = new Account(userid,pass);
-		LoginLogic logic = new LoginLogic();
 
 		boolean isLogin = logic.execute(user);
 

@@ -37,6 +37,9 @@ public class HistoryMain extends HttpServlet {
 
 	private final String HIS_3 = "his3";
 
+	List<History> hisList = new ArrayList<History>();
+	HistoryLogic historyLogic = new HistoryLogic();
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -50,8 +53,6 @@ public class HistoryMain extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		List<History> hisList = new ArrayList<History>();
-		HistoryLogic historyLogic = new HistoryLogic();
 		String history = request.getParameter(HISTORY);
 
 		if (history == null) {

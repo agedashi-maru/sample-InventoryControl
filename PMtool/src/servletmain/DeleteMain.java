@@ -27,6 +27,8 @@ public class DeleteMain extends HttpServlet {
 
 	private final String COUNT = "count";
 
+	List<ProductJB> empList = new ArrayList<ProductJB>();
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -39,7 +41,6 @@ public class DeleteMain extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<ProductJB> empList = new ArrayList<ProductJB>();
 		HttpSession session = request.getSession();
 		empList = (List<ProductJB>) session.getAttribute(DELETEID_LIST);
 		DeleteLogic dLogic = new DeleteLogic();

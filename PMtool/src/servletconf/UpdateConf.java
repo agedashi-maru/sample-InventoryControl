@@ -25,6 +25,13 @@ import model.SelectLogic;
 public class UpdateConf extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	Decision decision = new Decision();
+	List<ProductJB> empList = new ArrayList<ProductJB>();
+	RequestDispatcher dispatcher = null;
+	List<ProductJB> updateList = new ArrayList<ProductJB>();
+	ProductJB jb = null;
+	boolean flag = false;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -40,13 +47,6 @@ public class UpdateConf extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		Decision decision = new Decision();
-		List<ProductJB> empList = new ArrayList<ProductJB>();
-		RequestDispatcher dispatcher = null;
-
-		List<ProductJB> updateList = new ArrayList<ProductJB>();
-		ProductJB jb = null;
-		boolean flag = false;
 
 		for (int i = 1; i <= 5; i++) {
 			String firstId = request.getParameter("upid" + i);

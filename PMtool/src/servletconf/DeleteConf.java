@@ -26,6 +26,13 @@ public class DeleteConf extends HttpServlet {
 
 	private final String DELMSG = "※項目を正しく入力してください";
 
+	Decision decision = new Decision();
+	ProductJB deleteJB = null;
+	SelectLogic selectLogic = new SelectLogic();
+	RequestDispatcher dispatcher = null;
+	List<ProductJB> idList = new ArrayList<ProductJB>();
+	List<ProductJB> deleteIdList = new ArrayList<ProductJB>();
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -40,14 +47,7 @@ public class DeleteConf extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Decision decision = new Decision();
-		ProductJB deleteJB;
-		SelectLogic selectLogic = new SelectLogic();
 		HttpSession session = request.getSession();
-		RequestDispatcher dispatcher = null;
-
-		List<ProductJB> idList = new ArrayList<ProductJB>();
-		List<ProductJB> deleteIdList = new ArrayList<ProductJB>();
 
 		for (int i = 1; i <= 5; i++) {
 
@@ -88,9 +88,7 @@ public class DeleteConf extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/confjsp/confDelete.jsp");
-		dispatcher.forward(request, response);
+		doGet(request, response);
 	}
 
 }

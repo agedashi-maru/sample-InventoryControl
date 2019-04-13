@@ -62,6 +62,12 @@ public class SelectMain extends HttpServlet {
 
 	private final String MINUS_1 = "-1";
 
+	List<ProductJB> proList = new ArrayList<ProductJB>();
+	ProductJB jb = null;
+	Decision decision = new Decision();
+	SelectLogic sLogic = new SelectLogic();
+	RequestDispatcher dispatcher = null;
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -75,13 +81,8 @@ public class SelectMain extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<ProductJB> proList = new ArrayList<ProductJB>();
 		String hidden = request.getParameter(HIDDEN);
-		ProductJB jb = null;
-		Decision decision = new Decision();
-		SelectLogic sLogic = new SelectLogic();
 		HttpSession session = request.getSession();
-		RequestDispatcher dispatcher = null;
 
 		if (hidden == null) {
 			dispatcher = request.getRequestDispatcher("/jsp/menujsp/selectMenu.jsp");

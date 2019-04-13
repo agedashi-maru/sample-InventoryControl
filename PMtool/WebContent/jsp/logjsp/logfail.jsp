@@ -3,8 +3,7 @@
 <html>
 <head>
 <meta content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/all.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css" type="text/css">
 <title>ログイン失敗</title>
 </head>
 <body>

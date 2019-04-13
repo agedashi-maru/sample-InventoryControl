@@ -63,7 +63,6 @@
 				<p>
 					<input class="subm" type="submit" value="送信">
 				</p>
-				<input type="hidden" name="action" value="done2">
 			</form>
 			<c_:if test="${!empty dupMsg}">
 				<c_:out value="${dupMsg}" />

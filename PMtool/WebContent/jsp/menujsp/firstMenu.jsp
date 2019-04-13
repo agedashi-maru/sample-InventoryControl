@@ -3,11 +3,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/all.css" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/firstMenu.css"
-	type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/firstMenu.css" type="text/css">
 <title>在庫管理メニュー</title>
 </head>
 <body>
@@ -24,8 +21,8 @@
 			<h2>管理メニュー</h2>
 			<ul>
 				<li><a href="/PMtool/InsertInfo">新規商品登録</a></li>
-				<li><a href="/PMtool/log/UpdateConf">登録内容の変更</a></li>
-				<li><a href="/PMtool/log/DeleteConf">在庫データの削除</a></li>
+				<li><a href="/PMtool/UpdateInfo">登録内容の変更</a></li>
+				<li><a href="/PMtool/DeleteInfo">在庫データの削除</a></li>
 			</ul>
 		</div>
 		<p>

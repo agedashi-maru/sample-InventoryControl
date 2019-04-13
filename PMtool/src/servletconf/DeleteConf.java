@@ -26,7 +26,6 @@ public class DeleteConf extends HttpServlet {
 
 	private final String DELMSG = "※項目を正しく入力してください";
 
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -35,62 +34,60 @@ public class DeleteConf extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		String action = request.getParameter("action");
 		Decision decision = new Decision();
 		ProductJB deleteJB;
 		SelectLogic selectLogic = new SelectLogic();
 		HttpSession session = request.getSession();
 		RequestDispatcher dispatcher = null;
 
-		if (action == null) {
+		List<ProductJB> idList = new ArrayList<ProductJB>();
+		List<ProductJB> deleteIdList = new ArrayList<ProductJB>();
+
+		for (int i = 1; i <= 5; i++) {
+
+			String firstId = request.getParameter("deleteid" + i);
+			if (firstId.equals("") || firstId == null || !(decision.isInt(firstId))) {
+				firstId = "0";
+			}
+			int id = Integer.parseInt(firstId);
+			if (id < 0) {
+				id = 0;
+			}
+			idList = selectLogic.executeFindId();
+			for (ProductJB jb : idList) {
+				if ((!(id == 0)) && jb.getId() == id) {
+					deleteJB = new ProductJB(id);
+					deleteIdList.add(deleteJB);
+
+				}
+			}
+
+		}
+		if (deleteIdList.size() != 0) {
+			deleteIdList = selectLogic.executeSelectById(deleteIdList);
+			session.setAttribute("deleteIdList", deleteIdList);
+			dispatcher = request.getRequestDispatcher("/jsp/confjsp/confDelete.jsp");
+
+		} else {
+			request.setAttribute("delMsg", DELMSG);
 			dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
 
-		} else if (action.equals("done2")) {
-			List<ProductJB> idList = new ArrayList<ProductJB>();
-			List<ProductJB> deleteIdList = new ArrayList<ProductJB>();
-
-			for (int i = 1; i <= 5; i++) {
-
-				String firstId = request.getParameter("deleteid" + i);
-				if (firstId.equals("") || firstId == null || !(decision.isInt(firstId))) {
-					firstId = "0";
-				}
-				int id = Integer.parseInt(firstId);
-				if (id < 0) {
-					id = 0;
-				}
-				idList = selectLogic.executeFindId();
-				for (ProductJB jb : idList) {
-					if ((!(id == 0)) && jb.getId() == id) {
-						deleteJB = new ProductJB(id);
-						deleteIdList.add(deleteJB);
-
-					}
-				}
-
-			}
-			if (deleteIdList.size() != 0) {
-				deleteIdList = selectLogic.executeSelectById(deleteIdList);
-				session.setAttribute("deleteIdList", deleteIdList);
-				dispatcher = request.getRequestDispatcher("/jsp/confjsp/confDelete.jsp");
-
-			}else{
-				request.setAttribute("delMsg", DELMSG);
-				dispatcher = request.getRequestDispatcher("/jsp/menujsp/deleteMenu.jsp");
-
-			}
 		}
 		dispatcher.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/confjsp/confDelete.jsp");
 		dispatcher.forward(request, response);

@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/all.css" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/scrollbar.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/leftRight1.css"
-	type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/scrollbar.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/leftRight1.css" type="text/css">
 <title>在庫データの削除</title>
 </head>
 <body>
@@ -44,7 +39,6 @@
 				<p>
 					<input class="subm" type="submit" value="送信">
 				</p>
-				<input type="hidden" name="action" value="done2">
 			</form>
 			<c_:if test="${!empty delMsg}">
 				<c_:out value="${delMsg}" />
@@ -63,14 +57,10 @@
 					</tr>
 					<tr>
 						<td class="type1"><input type="text" name="stockReferenceId" size="3"></td>
-						<td class="type2"><input type="text" name="stockReferenceItem"
-							size="15"></td>
-						<td class="type3"><input type="text" name="stockReferenceKind"
-							size="10"></td>
-						<td class="type4"><input type="text" name="stockReferenceGroup"
-							size="5"></td>
-						<td class="type5"><input type="text" name="stockReferenceStock"
-							size="3"></td>
+						<td class="type2"><input type="text" name="stockReferenceItem" size="15"></td>
+						<td class="type3"><input type="text" name="stockReferenceKind" size="10"></td>
+						<td class="type4"><input type="text" name="stockReferenceGroup" size="5"></td>
+						<td class="type5"><input type="text" name="stockReferenceStock" size="3"></td>
 					</tr>
 				</table>
 				<br>

@@ -8,10 +8,10 @@ import dao.UpdateDao;
 
 public class UpdateLogic {
 
-	private UpdateDao dao;
+	private UpdateDao dao = new UpdateDao();;
 
 	public int executeUpdate(List<ProductJB> empList) {
-		dao = new UpdateDao();
+
 		int count = 0;
 		try {
 			for (ProductJB jb : empList) {
@@ -19,45 +19,39 @@ public class UpdateLogic {
 				sb.append("update m_product set ");
 
 				if (!(jb.getItem().equals(""))) {
-
 					sb.append("items = '");
 					sb.append(jb.getItem());
 					sb.append("' ");
+					sb.append(",");
 				}
 
 				if (!(jb.getKind().equals(""))) {
-					if (!(jb.getItem().equals(""))) {
-						sb.append(", ");
-					}
 					sb.append("kinds = '");
 					sb.append(jb.getKind());
 					sb.append("' ");
+					sb.append(",");
 				}
 
 				if (!(jb.getGroup().equals(""))) {
-					if ((!(jb.getItem().equals(""))) || (!(jb.getKind().equals("")))) {
-						sb.append(", ");
-					}
 					sb.append("groups = '");
 					sb.append(jb.getGroup());
 					sb.append("'");
+					sb.append(",");
 				}
 
 				if (jb.getStock() != -1) {
-					if ((!(jb.getItem().equals(""))) || (!(jb.getKind().equals(""))) || (!(jb.getGroup().equals("")))) {
-						sb.append(", ");
-					}
 					sb.append("stocks = ");
 					sb.append(jb.getStock());
 				}
 
+				if(sb.toString().endsWith(",")) {
+					sb.deleteCharAt(sb.length() - 1);
+				}
 				sb.append(" where id = ");
 				sb.append(jb.getId());
 				sb.append(";");
 
-				String sql = new String(sb);
-
-				count += dao.updateProduct(sql);
+				count += dao.updateProduct(sb.toString());
 			}
 		} catch (DaoExce e) {
 			e.printStackTrace();
@@ -71,7 +65,7 @@ public class UpdateLogic {
 		int count = 0;
 		List<ProductJB> stocks = new ArrayList<ProductJB>();
 		stocks = stockList;
-		dao = new UpdateDao();
+
 		for (History history : histories) {
 			try {
 				count += dao.updateStockInOut(stocks.get(s), history);

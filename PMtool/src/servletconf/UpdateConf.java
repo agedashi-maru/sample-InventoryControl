@@ -28,7 +28,6 @@ public class UpdateConf extends HttpServlet {
 	Decision decision = new Decision();
 	List<ProductJB> empList = new ArrayList<ProductJB>();
 	RequestDispatcher dispatcher = null;
-	List<ProductJB> updateList = new ArrayList<ProductJB>();
 	ProductJB jb = null;
 	boolean flag = false;
 
@@ -47,6 +46,7 @@ public class UpdateConf extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+		List<ProductJB> updateList = new ArrayList<ProductJB>();
 
 		for (int i = 1; i <= 5; i++) {
 			String firstId = request.getParameter("upid" + i);

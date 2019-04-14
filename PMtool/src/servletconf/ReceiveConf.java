@@ -35,8 +35,6 @@ public class ReceiveConf extends HttpServlet {
 	SelectLogic selectLogic = new SelectLogic();
 	Decision decision = new Decision();
 	List<ProductJB> productList = new ArrayList<ProductJB>();
-	List<ProductJB> inOutJBList = new ArrayList<ProductJB>();
-	List<History> historyList = new ArrayList<History>();
 	RequestDispatcher dispatcher = null;
 	String firstId = null;
 	String firstcount = null;
@@ -54,6 +52,9 @@ public class ReceiveConf extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		List<ProductJB> inOutJBList = new ArrayList<ProductJB>();
+		List<History> historyList = new ArrayList<History>();
 
 		for (int i = 1; i <= 5; i++) {
 			firstId = request.getParameter("stockid" + i);

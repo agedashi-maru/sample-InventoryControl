@@ -31,7 +31,6 @@ public class DeleteConf extends HttpServlet {
 	SelectLogic selectLogic = new SelectLogic();
 	RequestDispatcher dispatcher = null;
 	List<ProductJB> idList = new ArrayList<ProductJB>();
-	List<ProductJB> deleteIdList = new ArrayList<ProductJB>();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -48,6 +47,7 @@ public class DeleteConf extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+		List<ProductJB> deleteIdList = new ArrayList<ProductJB>();
 
 		for (int i = 1; i <= 5; i++) {
 

@@ -39,9 +39,6 @@ public class ShippingConf extends HttpServlet {
 	SelectLogic selectLogic = new SelectLogic();
 	Decision decision = new Decision();
 	List<ProductJB> productList = new ArrayList<ProductJB>();
-	List<ProductJB> inOutJBList = new ArrayList<ProductJB>();
-	List<History> historyList = new ArrayList<History>();
-	List<String> strout = new ArrayList<String>();
 	RequestDispatcher dispatcher = null;
 
 	/**
@@ -57,6 +54,10 @@ public class ShippingConf extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		List<ProductJB> inOutJBList = new ArrayList<ProductJB>();
+		List<History> historyList = new ArrayList<History>();
+		List<String> strout = new ArrayList<String>();
 
 		for (int i = 1; i <= 5; i++) {
 			firstId = request.getParameter("stockid" + i);

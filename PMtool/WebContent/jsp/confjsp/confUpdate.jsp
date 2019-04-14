@@ -35,7 +35,7 @@
 				</c_:forEach>
 			</table>
 			<p>
-				<a class="subm" href="/PMtool/log/UpdateMain?action=up1">実行</a>
+				<a class="subm" href="/PMtool/log/UpdateMain">実行</a>
 			</p>
 			<p class="menu">
 				<a href="/PMtool/log/returnMenu">メニューへ</a>

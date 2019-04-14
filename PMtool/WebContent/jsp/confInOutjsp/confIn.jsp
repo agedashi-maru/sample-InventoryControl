@@ -27,8 +27,7 @@
 					</c_:forEach>
 			</table>
 			<p>
-				<a href="/PMtool/log/UpdateMain?action=up2"><input class="subm"
-					type="button" value="実行"></a>
+				<a href="/PMtool/ReceiveMain"><input class="subm" type="button" value="実行"></a>
 			</p>
 			<p class="menu">
 				<a href="/PMtool/log/returnMenu">メニューへ</a>

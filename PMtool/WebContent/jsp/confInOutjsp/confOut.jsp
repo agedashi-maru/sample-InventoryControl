@@ -32,8 +32,7 @@
 					</c_:forEach>
 				</c_:if>
 			<p>
-				<a href="/PMtool/log/UpdateMain?action=up3"><input class="subm"
-					type="button" value="実行"></a>
+				<a href="/PMtool/ShippingMain"><input class="subm" type="button" value="実行"></a>
 			</p>
 			<p class="menu">
 				<a href="/PMtool/log/returnMenu">メニューへ</a>

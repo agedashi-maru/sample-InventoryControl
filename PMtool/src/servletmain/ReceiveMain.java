@@ -11,25 +11,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.History;
 import model.ProductJB;
 import model.UpdateLogic;
 
 /**
- * Servlet implementation class UpdateMain
+ * Servlet implementation class ReceiveMain
  */
-@WebServlet("/log/UpdateMain")
-public class UpdateMain extends HttpServlet {
+@WebServlet("/ReceiveMain")
+public class ReceiveMain extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	private final String COUNT = "count";
 
-	private final String UPDATE_LIST = "updateList";
+	private final String INOUT_JBLIST = "inOutJBList";
+
+	private final String HISTORY_LIST = "historyList";
 
 	UpdateLogic uLogic = new UpdateLogic();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UpdateMain() {
+	public ReceiveMain() {
 		super();
 	}
 
@@ -40,14 +44,16 @@ public class UpdateMain extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 
-		List<ProductJB> empList = (List<ProductJB>) session.getAttribute(UPDATE_LIST);
-		Integer count = uLogic.executeUpdate(empList);
-		session.setAttribute(COUNT, count);
+		List<ProductJB> stockList = (List<ProductJB>) session.getAttribute(INOUT_JBLIST);
+		List<History> histories = (List<History>) session.getAttribute(HISTORY_LIST);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/resultjsp/resUpdate.jsp");
+		Integer count = uLogic.stockInOut(stockList, histories);
+		request.setAttribute(COUNT, count);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/resInOutjsp/resIn.jsp");
+
 		dispatcher.forward(request, response);
 	}
 

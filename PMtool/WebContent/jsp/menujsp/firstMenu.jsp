@@ -14,7 +14,7 @@
 			<ul>
 				<li><a href="/PMtool/ReceiveInfo">入庫</a></li>
 				<li><a href="/PMtool/ShippingInfo">出庫</a></li>
-				<li><a href="/PMtool/log/SelectMain">照会</a></li>
+				<li><a href="/PMtool/SelectInfo">照会</a></li>
 			</ul>
 		</div>
 		<div class="manage">

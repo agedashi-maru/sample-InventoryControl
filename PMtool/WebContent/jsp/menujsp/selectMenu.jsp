@@ -4,20 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/all.css" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/scrollbar.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/leftRight2.css"
-	type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/scrollbar.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/leftRight2.css" type="text/css">
 <title>在庫照会メニュー</title>
 </head>
 <body>
 	<div class="main">
 		<div class="left">
-
 			<form action="/PMtool/log/SelectMain" method="get">
 				<input type="radio" name="select" value="all">在庫一覧 <input
 					type="radio" name="select" value="select1">完全一致 <input
@@ -32,7 +26,6 @@
 						<td>在庫数<input type="text" name="selectstock" size="5"></td>
 					</tr>
 				</table>
-
 				<table class="scroll">
 					<thead class="scrollHead">
 						<tr>
@@ -60,7 +53,6 @@
 				<p>
 					<input class="subm" type="submit" value="照会">
 				</p>
-				<input type="hidden" name="hidden" value="done">
 			</form>
 			<c_:if test="${!empty noMsg}">
 				<c_:out value="${noMsg}" />
@@ -68,10 +60,8 @@
 			<c_:if test="${!empty errorMsg}">
 				<c_:out value="${errorMsg}" />
 			</c_:if>
-
 		</div>
 		<div class="right">
-
 			<form action="/PMtool/log/HistoryMain" method="get">
 				<input type="radio" name="history" value="his1">入庫履歴 <input
 					type="radio" name="history" value="his2">出庫履歴 <input
@@ -109,7 +99,6 @@
 			<c_:if test="${!empty noHistory}">
 				<c_:out value="${noHistory}" />
 			</c_:if>
-
 		</div>
 	</div>
 	<br clear="all">

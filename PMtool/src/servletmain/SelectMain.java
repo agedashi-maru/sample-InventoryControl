@@ -36,10 +36,6 @@ public class SelectMain extends HttpServlet {
 
 	private final String ALL = "all";
 
-	private final String DONE = "done";
-
-	private final String HIDDEN = "hidden";
-
 	private final String SELECT = "select";
 
 	private final String SELECT_1 = "select1";
@@ -68,7 +64,6 @@ public class SelectMain extends HttpServlet {
 	SelectLogic sLogic = new SelectLogic();
 	RequestDispatcher dispatcher = null;
 
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -77,69 +72,65 @@ public class SelectMain extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		String hidden = request.getParameter(HIDDEN);
 		HttpSession session = request.getSession();
+		String select = request.getParameter(SELECT);
 
-		if (hidden == null) {
-			dispatcher = request.getRequestDispatcher("/jsp/menujsp/selectMenu.jsp");
+		if (select == null) {
+			request.setAttribute(NO_MSG, NO_SELECT_ERROR_MSG);
 
-		} else if (hidden.equals(DONE)) {
+		} else if (select.equals(ALL)) {
+			proList = sLogic.executeFindAll();
+			session.setAttribute(PRO_LIST, proList);
 
-			String select = request.getParameter(SELECT);
+		} else {
+			String firstId = request.getParameter(SELECT_ID);
+			String firststock = request.getParameter(SELECT_STOCK);
+			String item = request.getParameter(SELECT_ITEM);
+			String kind = request.getParameter(SELECT_KIND);
+			String group = request.getParameter(SELECT_GROUP);
 
-			if (select == null) {
-				request.setAttribute(NO_MSG, NO_SELECT_ERROR_MSG);
-
-			} else if (select.equals(ALL)) {
-
-				proList = sLogic.executeFindAll();
-				session.setAttribute(PRO_LIST, proList);
+			if (StringUtils.isEmpty(firstId) && firststock.equals("") && item.equals("") && kind.equals("")
+					&& group.equals("")) {
+				request.setAttribute(ERRORMSG, EMPTY_ERROR_MSG);
 
 			} else {
-				String firstId = request.getParameter(SELECT_ID);
-				String firststock = request.getParameter(SELECT_STOCK);
-				String item = request.getParameter(SELECT_ITEM);
-				String kind = request.getParameter(SELECT_KIND);
-				String group = request.getParameter(SELECT_GROUP);
-
-				if (StringUtils.isEmpty(firstId) && firststock.equals("") && item.equals("") && kind.equals("") && group.equals("")) {
-					request.setAttribute(ERRORMSG, EMPTY_ERROR_MSG);
-
-				} else {
-					if (!(decision.isInt(firstId)) || firstId.equals("")) {
-						firstId = ZERO;
-					}
-					int id = Integer.parseInt(firstId);
-					if (id < 0) {
-						id = 0;
-					}
-
-					if (!(decision.isInt(firststock)) || firststock.equals("") || (firststock == null)) {
-						firststock = MINUS_1;
-					}
-					int stock = Integer.parseInt(firststock);
-					jb = new ProductJB(id, item, kind, group, stock);
-					if (select.equals(SELECT_1)) {
-						proList = sLogic.executeAllMatch(jb);
-					} else if (select.equals(SELECT_2)) {
-						proList = sLogic.executeStockMatch(jb);
-					}
-					session.setAttribute(PRO_LIST, proList);
+				if (!(decision.isInt(firstId)) || firstId.equals("")) {
+					firstId = ZERO;
 				}
+				int id = Integer.parseInt(firstId);
+				if (id < 0) {
+					id = 0;
+				}
+
+				if (!(decision.isInt(firststock)) || StringUtils.isEmpty(firststock)) {
+					firststock = MINUS_1;
+				}
+				int stock = Integer.parseInt(firststock);
+				jb = new ProductJB(id, item, kind, group, stock);
+				if (select.equals(SELECT_1)) {
+					proList = sLogic.executeAllMatch(jb);
+				} else if (select.equals(SELECT_2)) {
+					proList = sLogic.executeStockMatch(jb);
+				}
+				session.setAttribute(PRO_LIST, proList);
 			}
-			dispatcher = request.getRequestDispatcher("/jsp/menujsp/selectMenu.jsp");
 		}
+		dispatcher = request.getRequestDispatcher("/jsp/menujsp/selectMenu.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

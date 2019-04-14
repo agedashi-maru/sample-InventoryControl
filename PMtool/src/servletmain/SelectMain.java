@@ -95,12 +95,12 @@ public class SelectMain extends HttpServlet {
 			String kind = request.getParameter(SELECT_KIND);
 			String group = request.getParameter(SELECT_GROUP);
 
-			if (StringUtils.isEmpty(firstId) && firststock.equals("") && item.equals("") && kind.equals("")
-					&& group.equals("")) {
+			if (StringUtils.isEmpty(firstId) && StringUtils.isEmpty(firststock) && StringUtils.isEmpty(item) && StringUtils.isEmpty(kind)
+					&& StringUtils.isEmpty(group)) {
 				request.setAttribute(ERRORMSG, EMPTY_ERROR_MSG);
 
 			} else {
-				if (!(decision.isInt(firstId)) || firstId.equals("")) {
+				if (StringUtils.isEmpty(firstId) || !(decision.isInt(firstId))) {
 					firstId = ZERO;
 				}
 				int id = Integer.parseInt(firstId);
@@ -108,7 +108,7 @@ public class SelectMain extends HttpServlet {
 					id = 0;
 				}
 
-				if (!(decision.isInt(firststock)) || StringUtils.isEmpty(firststock)) {
+				if (StringUtils.isEmpty(firststock) || !(decision.isInt(firststock)) ) {
 					firststock = MINUS_1;
 				}
 				int stock = Integer.parseInt(firststock);

@@ -3,16 +3,17 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import dao.DaoExce;
 import dao.SelectDao;
 
 public class SelectLogic {
 
-	private SelectDao dao;
+	private SelectDao dao = new SelectDao();;
 
 	public List<ProductJB> executeFindAll() {
 
-		dao = new SelectDao();
 		List<ProductJB> empList = new ArrayList<ProductJB>();
 		String sql = "SELECT * FROM m_product;";
 		try {
@@ -26,7 +27,6 @@ public class SelectLogic {
 
 	public List<ProductJB> executeFindId() {
 
-		dao = new SelectDao();
 		List<ProductJB> empList = new ArrayList<ProductJB>();
 		String sql = "SELECT id FROM m_product;";
 		try {
@@ -39,7 +39,6 @@ public class SelectLogic {
 	}
 
 	public List<ProductJB> executeAllMatch(ProductJB jb) {
-		dao = new SelectDao();
 		List<ProductJB> empList = new ArrayList<ProductJB>();
 		StringBuilder sb = new StringBuilder();
 		sb.append("SELECT * FROM m_product where 1 ");
@@ -50,21 +49,21 @@ public class SelectLogic {
 			sb.append(jb.getId());
 		}
 
-		if (jb.getItem() != null && jb.getItem().length() != 0) {
+		if (!StringUtils.isEmpty(jb.getItem())) {
 			sb.append(" AND ");
 			sb.append("items = '");
 			sb.append(jb.getItem());
 			sb.append("' ");
 		}
 
-		if (jb.getKind() != null && jb.getKind().length() != 0) {
+		if (!StringUtils.isEmpty(jb.getKind())) {
 			sb.append(" AND ");
 			sb.append("kinds = '");
 			sb.append(jb.getKind());
 			sb.append("' ");
 		}
 
-		if (jb.getGroup() != null && jb.getGroup().length() != 0) {
+		if (!StringUtils.isEmpty(jb.getGroup())) {
 			sb.append(" AND ");
 			sb.append("groups = '");
 			sb.append(jb.getGroup());
@@ -79,9 +78,8 @@ public class SelectLogic {
 
 		sb.append(";");
 
-		String sql = new String(sb);
 		try {
-			empList = dao.findProducts(sql);
+			empList = dao.findProducts(sb.toString());
 		} catch (DaoExce e) {
 			e.printStackTrace();
 		}
@@ -90,7 +88,6 @@ public class SelectLogic {
 	}
 
 	public List<ProductJB> executeStockMatch(ProductJB jb) {
-		dao = new SelectDao();
 		List<ProductJB> empList = new ArrayList<ProductJB>();
 		StringBuilder sb = new StringBuilder();
 		sb.append("SELECT * FROM m_product where 1 ");
@@ -100,21 +97,21 @@ public class SelectLogic {
 			sb.append(jb.getId());
 		}
 
-		if (jb.getItem() != null && jb.getItem().length() != 0) {
+		if (!StringUtils.isEmpty(jb.getItem())) {
 			sb.append(" OR ");
 			sb.append(" items like '%");
 			sb.append(jb.getItem());
 			sb.append("%' ");
 		}
 
-		if (jb.getKind() != null && jb.getKind().length() != 0) {
+		if (!StringUtils.isEmpty(jb.getKind())) {
 			sb.append(" OR ");
 			sb.append(" kinds like '%");
 			sb.append(jb.getKind());
 			sb.append("%' ");
 		}
 
-		if (jb.getGroup() != null && jb.getGroup().length() != 0) {
+		if (!StringUtils.isEmpty(jb.getGroup())) {
 			sb.append(" OR ");
 			sb.append(" groups like '%");
 			sb.append(jb.getGroup());
@@ -128,9 +125,8 @@ public class SelectLogic {
 		}
 		sb.append(";");
 
-		String sql = new String(sb);
 		try {
-			empList = dao.findProducts(sql);
+			empList = dao.findProducts(sb.toString());
 		} catch (DaoExce e) {
 			e.printStackTrace();
 		}
@@ -139,7 +135,6 @@ public class SelectLogic {
 	}
 
 	public List<ProductJB> executeSomeMatch(ProductJB jb) {
-		dao = new SelectDao();
 		List<ProductJB> empList = new ArrayList<ProductJB>();
 		StringBuilder sb = new StringBuilder();
 		sb.append("SELECT * FROM m_product where 1 ");
@@ -149,21 +144,21 @@ public class SelectLogic {
 			sb.append(jb.getId());
 		}
 
-		if (jb.getItem() != null && jb.getItem().length() != 0) {
+		if (!StringUtils.isEmpty(jb.getItem())) {
 			sb.append(" OR ");
 			sb.append(" items like '%");
 			sb.append(jb.getItem());
 			sb.append("%' ");
 		}
 
-		if (jb.getKind() != null && jb.getKind().length() != 0) {
+		if (!StringUtils.isEmpty(jb.getKind())) {
 			sb.append(" OR ");
 			sb.append(" kinds like '%");
 			sb.append(jb.getKind());
 			sb.append("%' ");
 		}
 
-		if (jb.getGroup() != null && jb.getGroup().length() != 0) {
+		if (!StringUtils.isEmpty(jb.getGroup())) {
 			sb.append(" OR ");
 			sb.append(" groups like '%");
 			sb.append(jb.getGroup());
@@ -172,10 +167,8 @@ public class SelectLogic {
 
 		sb.append(";");
 
-		String sql = new String(sb);
-
 		try {
-			empList = dao.findProducts(sql);
+			empList = dao.findProducts(sb.toString());
 		} catch (DaoExce e) {
 			e.printStackTrace();
 		}
@@ -186,7 +179,6 @@ public class SelectLogic {
 	public List<ProductJB> executeSelectById(List<ProductJB> deleteIdList) {
 		List<ProductJB> selectByIdList = new ArrayList<ProductJB>();
 		ProductJB deleJB = new ProductJB();
-		dao = new SelectDao();
 		for (ProductJB productJB : deleteIdList) {
 			String sql = "select * from m_product where id = " + productJB.getId() + ";";
 			try {

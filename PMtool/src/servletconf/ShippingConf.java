@@ -101,22 +101,17 @@ public class ShippingConf extends HttpServlet {
 
 		}
 
-		List<Integer> ids = new ArrayList<Integer>();
 		boolean flag = false;
 
-		for (ProductJB prodJB : inOutJBList) {
-			ids.add(prodJB.getId());
-		}
-
 		Set<Integer> checkHash = new HashSet<Integer>();
-		for (Integer str : ids) {
-			if (checkHash.contains(str)) {
+		for (int i = 0; i < inOutJBList.size(); i++) {
+			if (checkHash.contains(inOutJBList.get(i).getId())) {
 				// 重複があればtrueをセットし終了
 				flag = true;
 				break;
 			} else {
 				// 重複しなければハッシュセットへ追加
-				checkHash.add(str);
+				checkHash.add(inOutJBList.get(i).getId());
 			}
 		}
 

@@ -40,47 +40,47 @@ public class HistoryMain extends HttpServlet {
 	List<History> hisList = new ArrayList<History>();
 	HistoryLogic historyLogic = new HistoryLogic();
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public HistoryMain() {
-        super();
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public HistoryMain() {
+		super();
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
 		String history = request.getParameter(HISTORY);
 
-		if (history == null) {
-			request.setAttribute(NO_HISTORY, NO_HISTORY_ERROR_MSG);
-
-		}else{
-			if (history.equals(HIS_1)) {
+		if (HIS_1.equals(history)) {
 			hisList = historyLogic.inLogic();
 
-			}else if(history.equals(HIS_2)){
-				hisList = historyLogic.outLogic();
+		} else if (HIS_2.equals(history)) {
+			hisList = historyLogic.outLogic();
 
-			}else if (history.equals(HIS_3)) {
-				hisList = historyLogic.inOutLogic();
+		} else if (HIS_3.equals(history)) {
+			hisList = historyLogic.inOutLogic();
 
-			}
-			session.setAttribute(HIS_LIST, hisList);
-
+		} else {
+			request.setAttribute(NO_HISTORY, NO_HISTORY_ERROR_MSG);
 		}
+		session.setAttribute(HIS_LIST, hisList);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/menujsp/selectMenu.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
